@@ -1,0 +1,111 @@
+.level-picker-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    margin-bottom: var(--space-1);
+    letter-spacing: 0.05em;
+}
+
+.level-picker-subtitle {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    margin-bottom: var(--space-5);
+}
+
+.level-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Tang Dynasty "Scroll" Card Style */
+.level-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hsk-border);
+    border-left: 4px solid var(--level-color, var(--tang-red));
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+    transition: transform var(--duration-normal) var(--ease-expressive),
+        box-shadow var(--duration-normal) var(--ease-standard),
+        background-color var(--duration-fast) var(--ease-standard);
+    animation: cardSlideIn var(--duration-slow) var(--ease-expressive-decelerate) backwards;
+}
+
+.level-card:nth-child(1) {
+    animation-delay: calc(var(--stagger-delay) * 0);
+}
+
+.level-card:nth-child(2) {
+    animation-delay: calc(var(--stagger-delay) * 1);
+}
+
+.level-card:nth-child(3) {
+    animation-delay: calc(var(--stagger-delay) * 2);
+}
+
+.level-card:nth-child(4) {
+    animation-delay: calc(var(--stagger-delay) * 3);
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.level-card:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #F9F7F0;
+    transition-duration: var(--duration-fast);
+}
+
+.level-locked {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.level-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.level-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.level-label {
+    font-family: var(--font-chinese);
+    font-size: var(--text-lg);
+    font-weight: 900;
+    color: var(--hsk-ink);
+}
+
+.level-words {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+}

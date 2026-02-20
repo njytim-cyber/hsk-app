@@ -1,0 +1,221 @@
+.page-write {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-4);
+    gap: var(--space-4);
+}
+
+.write-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    align-self: flex-start;
+    letter-spacing: 0.05em;
+}
+
+.write-subtitle {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    align-self: flex-start;
+    margin-bottom: var(--space-3);
+}
+
+/* Level selector — Tang card grid */
+.write-level-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.write-level-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hsk-border);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+    transition: all var(--duration-normal) var(--ease-expressive);
+}
+
+.write-level-btn:active:not(:disabled) {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition-duration: var(--duration-fast);
+}
+
+.write-level-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.write-level-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.write-level-label {
+    font-family: var(--font-chinese);
+    font-weight: 900;
+    color: var(--hsk-ink);
+}
+
+.write-coming-soon {
+    font-size: var(--text-xs);
+    color: var(--hsk-ink-faint);
+}
+
+/* Practice view */
+.write-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.write-word-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.write-pinyin {
+    font-family: var(--font-pinyin);
+    font-size: var(--text-lg);
+    color: var(--tang-red);
+    font-weight: var(--font-medium);
+}
+
+.write-english {
+    font-size: var(--text-base);
+    color: var(--hsk-ink-muted);
+}
+
+.write-audio {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    font-size: 1.1rem;
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.write-audio:active {
+    background: var(--tang-red-light);
+    transform: scale(0.85);
+}
+
+.write-stroke-info {
+    display: flex;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    font-family: var(--font-chinese);
+}
+
+.mistake-count {
+    color: #DC2626;
+}
+
+/* Complete */
+.write-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+}
+
+.write-complete .complete-emoji {
+    font-size: 3.5rem;
+}
+
+.write-complete .complete-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.write-complete .complete-subtitle {
+    color: var(--hsk-ink-muted);
+}
+
+.write-complete .complete-xp {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--hsk-gold-dark);
+}
+
+/* ── Hint Buttons ── */
+
+.write-hints {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.hint-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--hsk-border);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    font-family: var(--font-chinese);
+    font-size: var(--text-sm);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    transition: all var(--duration-fast) var(--ease-spring);
+    min-height: 36px;
+    position: relative;
+}
+
+.hint-btn:active:not(:disabled) {
+    transform: scale(0.9);
+    background: var(--tang-red-light);
+    border-color: var(--tang-red);
+}
+
+.hint-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.hint-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: var(--radius-full);
+    background: var(--tang-red);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: var(--font-bold);
+    margin-left: 2px;
+}

@@ -1,0 +1,132 @@
+/* ═══════════════════════════════════════════════════════
+   CharacterCanvas — Tang Dynasty Writing Slot
+   ═══════════════════════════════════════════════════════ */
+
+/* Main wrapper — this is what CharacterCanvas.tsx renders */
+.character-canvas {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--bg-canvas);
+    background-image: var(--texture-paper);
+    border: 2px solid var(--hsk-gold);
+    border-radius: var(--radius-md);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    touch-action: none;
+    box-sizing: border-box;
+}
+
+.writer-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    touch-action: none;
+    z-index: 2;
+}
+
+.writer-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-faint);
+    z-index: 10;
+}
+
+/* ── Grid Patterns ── */
+
+/* Tianzige (田字格) — cross grid */
+.grid-tianzige::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(180, 83, 9, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 83, 9, 0.2) 1px, transparent 1px);
+    background-size: 50% 50%;
+    background-position: center;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Mizige (米字格) — cross + diagonals */
+.grid-mizige::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(180, 83, 9, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 83, 9, 0.18) 1px, transparent 1px);
+    background-size: 50% 50%;
+    background-position: center;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.grid-mizige::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, transparent 49.5%, rgba(180, 83, 9, 0.1) 49.5%, rgba(180, 83, 9, 0.1) 50.5%, transparent 50.5%),
+        linear-gradient(-45deg, transparent 49.5%, rgba(180, 83, 9, 0.1) 49.5%, rgba(180, 83, 9, 0.1) 50.5%, transparent 50.5%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Blank — no grid */
+.grid-blank::before,
+.grid-blank::after {
+    display: none;
+}
+
+/* Force HanziWriter SVG transparent & centered */
+.character-canvas svg {
+    background: transparent !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/* ── Success Stamp Overlay ── */
+.success-stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity var(--duration-fast) var(--ease-standard),
+        transform var(--duration-normal) var(--ease-spring);
+}
+
+.success-stamp.show {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+    animation: stampBounce var(--duration-slow) var(--ease-spring);
+}
+
+.stamp-rect {
+    fill: none;
+    stroke: var(--tang-red);
+    stroke-width: 2;
+}
+
+.stamp-text {
+    fill: var(--tang-red);
+    font-size: 40px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}

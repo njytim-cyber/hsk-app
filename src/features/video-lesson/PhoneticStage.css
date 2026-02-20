@@ -1,0 +1,448 @@
+/* ═══════════════════════════════════════════════════════
+   PhoneticStage — Listen & Speak (2026 Premium)
+   ═══════════════════════════════════════════════════════ */
+
+.phonetic-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 16px 24px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.phonetic-stage__translation {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--hsk-ink-muted);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0 12px;
+}
+
+/* ── Header ── */
+.phonetic-stage__header {
+    text-align: center;
+}
+
+.phonetic-stage__title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--hsk-ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.phonetic-stage__desc {
+    font-size: 14px;
+    color: var(--hsk-ink-muted);
+    line-height: 1.4;
+}
+
+/* ── Listen full sentence ── */
+.listen-sentence-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 24px;
+    background: white;
+    border: 1px solid var(--hsk-border);
+    color: var(--hsk-ink);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.listen-sentence-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.12);
+    border-color: var(--hsk-gold);
+}
+
+.listen-sentence-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Sentence Card ── */
+.phonetic-stage__sentence-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 18px;
+    width: 100%;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.03),
+        0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.phonetic-stage__words {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* ── Word Tiles — light, airy ── */
+.word-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    background: var(--tang-paper);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    min-width: 50px;
+    animation: tileAppear 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes tileAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.word-tile:active {
+    transform: scale(0.93);
+}
+
+.word-tile--listening {
+    border-color: var(--hsk-gold);
+    background: rgba(255, 215, 0, 0.06);
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.08);
+    transform: scale(1.04);
+}
+
+.word-tile__pinyin {
+    font-family: var(--font-pinyin);
+    font-size: 10px;
+    color: var(--hsk-ink-faint);
+    font-weight: 400;
+}
+
+.word-tile__hanzi {
+    font-family: var(--font-chinese);
+    font-size: 22px;
+    color: var(--hsk-ink);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.word-tile__english {
+    font-size: 9px;
+    color: var(--hsk-ink-faint);
+    font-weight: 400;
+}
+
+.word-tile__speaker {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 11px;
+    animation: speakerPulse 0.8s ease infinite;
+}
+
+@keyframes speakerPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.word-tile__indicator {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    animation: indicatorPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes indicatorPop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.word-tile--correct {
+    border-color: var(--hsk-jade);
+    background: rgba(6, 95, 70, 0.04);
+}
+
+.word-tile--correct .word-tile__indicator {
+    background: var(--hsk-jade);
+    color: white;
+}
+
+.word-tile--incorrect {
+    border-color: var(--hsk-danger);
+    background: rgba(220, 38, 38, 0.03);
+    animation: tileShake 0.35s ease;
+}
+
+@keyframes tileShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
+}
+
+.word-tile--incorrect .word-tile__indicator {
+    background: var(--hsk-danger);
+    color: white;
+}
+
+/* ── Recording Controls ── */
+.phonetic-stage__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Hint text */
+.phonetic-stage__hint {
+    font-size: 12px;
+    color: var(--hsk-ink-faint);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Big circular mic button */
+.mic-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 80px;
+    height: 80px;
+    min-height: 80px;
+    min-width: 80px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mic-btn__icon {
+    font-size: 28px;
+    z-index: 1;
+}
+
+.mic-btn__label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.mic-btn--start {
+    background: var(--tang-red);
+    color: white;
+    box-shadow:
+        0 2px 4px rgba(169, 50, 38, 0.15),
+        0 8px 24px rgba(169, 50, 38, 0.25);
+}
+
+.mic-btn--start:active {
+    transform: scale(0.92);
+}
+
+.mic-btn--recording {
+    background: var(--hsk-danger);
+    color: white;
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.1);
+    animation: recordPulse 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes recordPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 14px rgba(220, 38, 38, 0.04);
+    }
+}
+
+/* Wave bars */
+.recording-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.recording-waves {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 28px;
+}
+
+.wave-bar {
+    width: 3px;
+    background: var(--tang-red);
+    border-radius: 3px;
+    animation: waveBar 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes waveBar {
+    from {
+        height: 6px;
+        opacity: 0.3;
+    }
+
+    to {
+        height: 24px;
+        opacity: 1;
+    }
+}
+
+/* Action pills */
+.phonetic-stage__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 22px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-pill--secondary {
+    background: white;
+    color: var(--hsk-ink);
+    border: 1px solid var(--hsk-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.action-pill--primary {
+    background: var(--tang-red);
+    color: white;
+    box-shadow:
+        0 1px 2px rgba(169, 50, 38, 0.15),
+        0 4px 12px rgba(169, 50, 38, 0.2);
+}
+
+.action-pill:active {
+    transform: scale(0.96);
+}
+
+/* ── Score Ring ── */
+.phonetic-stage__result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.score-ring {
+    position: relative;
+    width: 88px;
+    height: 88px;
+}
+
+.score-ring svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.score-ring__bg {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.06);
+    stroke-width: 3.5;
+}
+
+.score-ring__fill {
+    fill: none;
+    stroke: var(--hsk-jade);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.score-ring__value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--hsk-jade);
+    letter-spacing: -0.5px;
+}

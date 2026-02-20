@@ -1,0 +1,200 @@
+/* ═══════════════════════════════════════════════════════
+   WritingStage — Character Practice (2026 Premium)
+   ═══════════════════════════════════════════════════════ */
+
+.writing-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 16px 24px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    flex: 1;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* ── Target words ── */
+.writing-stage__targets {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.writing-stage__target-word {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.writing-stage__target-hanzi {
+    font-family: var(--font-chinese);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--hsk-ink);
+}
+
+.writing-stage__target-meta {
+    font-size: 11px;
+    color: var(--hsk-ink-faint);
+    font-weight: 400;
+}
+
+/* ── Character Pills ── */
+.writing-stage__char-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.char-pill {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.char-pill--active {
+    border-color: var(--tang-red);
+    box-shadow:
+        0 0 0 3px rgba(169, 50, 38, 0.08),
+        0 2px 8px rgba(169, 50, 38, 0.1);
+    transform: scale(1.1);
+}
+
+.char-pill--done {
+    border-color: var(--hsk-jade);
+    background: rgba(6, 95, 70, 0.04);
+}
+
+.char-pill__char {
+    font-family: var(--font-chinese);
+    font-size: 18px;
+    color: var(--hsk-ink);
+}
+
+.char-pill__check {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--hsk-jade);
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: indicatorPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes indicatorPop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ── Canvas Area — centered ── */
+.writing-stage__canvas-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.writing-stage__canvas {
+    width: min(280px, 72vw);
+}
+
+/* Stroke progress */
+.writing-stage__stroke-bar {
+    width: min(280px, 72vw);
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.writing-stage__stroke-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hsk-jade), var(--hsk-jade-light));
+    border-radius: 3px;
+    transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Toolbar */
+.writing-stage__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(280px, 72vw);
+}
+
+.writing-tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--hsk-ink-muted);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.writing-tool-btn:active {
+    transform: scale(0.96);
+}
+
+.writing-tool-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.writing-stage__mistake-count {
+    font-size: 12px;
+    color: var(--hsk-ink-faint);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* ── Completion ── */
+.writing-stage__complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+}
+
+.writing-stage__stamp {
+    font-family: var(--font-chinese);
+    font-size: 72px;
+    color: var(--tang-red);
+    opacity: 0.6;
+    filter: drop-shadow(0 4px 20px rgba(169, 50, 38, 0.15));
+}

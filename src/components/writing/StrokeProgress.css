@@ -1,0 +1,29 @@
+.stroke-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: var(--space-2) 0;
+}
+
+.stroke-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.stroke-remaining {
+    background: rgba(169, 50, 38, 0.1);
+}
+
+.stroke-active {
+    background: var(--tang-red);
+    width: 12px;
+    height: 12px;
+    animation: pulse 1.5s var(--ease-standard) infinite;
+}
+
+.stroke-done {
+    background: var(--hsk-jade);
+}

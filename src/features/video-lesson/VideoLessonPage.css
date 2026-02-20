@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════════════
+   VideoLessonPage — 2026 Premium, Bottom-Nav
+   ═══════════════════════════════════════════════════════ */
+
+.video-lesson-page {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+/* ── Content Area — full except bottom bar ── */
+.vl-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    background: white;
+}
+
+/* Force child stages to fill the available space */
+.vl-content>* {
+    flex: 1;
+}
+
+.vl-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Bottom Navigation Bar ── */
+.vl-bottom-bar {
+    flex-shrink: 0;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 6px 16px calc(env(safe-area-inset-bottom, 8px) + 6px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+}
+
+.vl-bottom-bar__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hsk-ink-faint);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vl-bottom-bar__close:active {
+    color: var(--hsk-ink);
+}
+
+.vl-bottom-bar__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 7vw, 36px);
+}
+
+.vl-btab {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vl-btab--active {
+    transform: scale(1.15);
+}
+
+.vl-btab:active {
+    transform: scale(0.88);
+}
+
+.vl-btab--done svg {
+    stroke: var(--hsk-jade);
+    opacity: 0.6;
+}
+
+/* Thin progress segments */
+.vl-bottom-bar__progress {
+    display: flex;
+    gap: 3px;
+    height: 2px;
+}
+
+.vl-seg {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vl-seg--active {
+    background: var(--tang-red);
+}
+
+.vl-seg--done {
+    background: var(--hsk-jade);
+}
+
+/* ── Direction-aware transitions ── */
+.vl-content--enter-left {
+    animation: enterLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.vl-content--enter-right {
+    animation: enterRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.vl-content--exit-left {
+    animation: exitLeft 0.12s ease-in both;
+    pointer-events: none;
+}
+
+.vl-content--exit-right {
+    animation: exitRight 0.12s ease-in both;
+    pointer-events: none;
+}
+
+@keyframes enterLeft {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes enterRight {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes exitLeft {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes exitRight {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Shared Buttons
+   ═══════════════════════════════════════════════════════ */
+
+.continue-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    max-width: 280px;
+    padding: 14px var(--space-5);
+    background: var(--tang-red);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow:
+        0 1px 2px rgba(169, 50, 38, 0.15),
+        0 4px 12px rgba(169, 50, 38, 0.2);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    min-height: 50px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.continue-btn:active {
+    transform: scale(0.96);
+}
+
+.continue-btn__arrow {
+    font-size: 16px;
+}

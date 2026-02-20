@@ -1,0 +1,211 @@
+.page-profile {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* Profile Hero — Avatar + Coins */
+.profile-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hsk-border);
+    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    border: 3px solid var(--hsk-gold);
+    box-shadow: 0 2px 8px rgba(180, 83, 9, 0.2);
+    background-size: 800% 800%;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-spring);
+    flex-shrink: 0;
+}
+
+.profile-avatar:active {
+    transform: scale(0.9);
+    border-color: var(--tang-red);
+}
+
+.profile-hero-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1;
+}
+
+.profile-hero-coins {
+    font-family: var(--font-chinese);
+    font-weight: 900;
+    font-size: var(--text-lg);
+    color: var(--hsk-gold-dark);
+}
+
+.shop-open-btn {
+    margin-left: auto;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-family: var(--font-chinese);
+    font-weight: 900;
+    font-size: var(--text-sm);
+    background: var(--tang-red-light);
+    color: var(--tang-red-dark);
+    border: 1px solid var(--tang-red);
+    min-height: 40px;
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.shop-open-btn:active {
+    transform: scale(0.95);
+    background: rgba(169, 50, 38, 0.15);
+}
+
+/* Stats grid — Tang Dynasty calligraphy pillbox */
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-3);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hsk-border);
+    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+}
+
+.stat-icon {
+    font-size: 1.6rem;
+}
+
+.stat-card .stat-value {
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    font-family: var(--font-chinese);
+}
+
+.stat-card .stat-label {
+    font-size: var(--text-xs);
+    color: var(--hsk-ink-muted);
+}
+
+/* Sections */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.section-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-lg);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    letter-spacing: 0.05em;
+}
+
+/* Mastery rows */
+.mastery-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.mastery-label {
+    font-family: var(--font-chinese);
+    font-weight: 900;
+    font-size: var(--text-sm);
+    min-width: 50px;
+}
+
+/* Settings */
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+}
+
+.setting-label {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink);
+    font-weight: var(--font-semibold);
+}
+
+.setting-options {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.setting-btn {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-chinese);
+    border: 1px solid var(--hsk-border);
+    background-color: var(--card-bg);
+    min-height: 36px;
+    transition: all var(--duration-fast) var(--ease-spring);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.setting-btn.active {
+    background: var(--tang-red-light);
+    border-color: var(--tang-red);
+    color: var(--tang-red-dark);
+    font-weight: 900;
+}
+
+.setting-btn:active {
+    transform: scale(0.92);
+    transition-duration: var(--duration-instant);
+}
+
+/* Toggle — Tang Dynasty ink toggle */
+.toggle-btn {
+    width: 48px;
+    height: 28px;
+    border-radius: 14px;
+    background: var(--tang-paper-dark);
+    position: relative;
+    transition: background var(--duration-fast) var(--ease-standard);
+    min-height: 28px;
+}
+
+.toggle-btn.on {
+    background: var(--tang-red);
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    background: white;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.toggle-btn.on .toggle-thumb {
+    transform: translateX(20px);
+}

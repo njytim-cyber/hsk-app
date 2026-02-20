@@ -1,0 +1,174 @@
+/* ═══════════════════════════════════════════
+   VideoFeed — TikTok-style vertical feed
+   ═══════════════════════════════════════════ */
+
+.video-feed {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    overflow: hidden;
+}
+
+/* ── HSK badge (top right) ── */
+.vf-hsk-badge {
+    position: fixed;
+    top: max(env(safe-area-inset-top, 12px), 12px);
+    right: 14px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: rgba(255, 255, 255, 0.75);
+    pointer-events: none;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
+.vf-hsk-badge__label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* ── Lesson dots (right side) ── */
+.vf-dots {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+.vf-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vf-dot--active {
+    background: #fff;
+    transform: scale(1.8);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.vf-dot--done {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.vf-dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.4);
+}
+
+.vf-dot--active:hover {
+    transform: scale(1.8);
+    background: #fff;
+}
+
+/* ── Lesson title overlay (top center) ── */
+.vf-lesson-title {
+    position: fixed;
+    top: max(env(safe-area-inset-top, 12px), 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.vf-lesson-title--hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.vf-lesson-title__emoji {
+    font-size: 14px;
+}
+
+.vf-lesson-title__text {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.02em;
+}
+
+/* ── Lesson container ── */
+.vf-lesson {
+    height: 100%;
+    width: 100%;
+}
+
+/* ── Vertical slide transitions ── */
+.vf-slide--exit-up {
+    animation: vfExitUp 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.vf-slide--exit-down {
+    animation: vfExitDown 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.vf-slide--enter-up {
+    animation: vfEnterUp 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.vf-slide--enter-down {
+    animation: vfEnterDown 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes vfExitUp {
+    to {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+}
+
+@keyframes vfExitDown {
+    to {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+}
+
+@keyframes vfEnterUp {
+    from {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes vfEnterDown {
+    from {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

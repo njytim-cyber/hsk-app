@@ -1,0 +1,161 @@
+.page-review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-4);
+    gap: var(--space-5);
+    min-height: 100%;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.review-due-count {
+    font-size: var(--text-sm);
+    font-weight: 900;
+    color: var(--tang-red);
+    white-space: nowrap;
+    background: var(--tang-red-light);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    font-family: var(--font-chinese);
+}
+
+/* Review card — Tang Dynasty writing card style */
+.review-card {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 3/4;
+    position: relative;
+    cursor: pointer;
+}
+
+.review-card-front,
+.review-card-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    border-radius: var(--radius-md);
+    backface-visibility: hidden;
+    transition: transform 0.5s var(--ease-spring);
+    padding: var(--space-6);
+}
+
+.review-card-front {
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border: 1px solid var(--hsk-border);
+    box-shadow: var(--shadow-tang);
+}
+
+.review-card-back {
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border: 2px solid var(--tang-red);
+    box-shadow: var(--shadow-tang-lg);
+    transform: rotateY(180deg);
+}
+
+.review-card.flipped .review-card-front {
+    transform: rotateY(180deg);
+}
+
+.review-card.flipped .review-card-back {
+    transform: rotateY(0deg);
+}
+
+.review-hanzi {
+    font-family: var(--font-chinese);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--hsk-ink);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.review-pinyin {
+    font-family: var(--font-pinyin);
+    font-size: var(--text-lg);
+    color: var(--tang-red);
+    font-weight: var(--font-medium);
+}
+
+.review-english {
+    font-size: var(--text-base);
+    color: var(--hsk-ink-muted);
+    text-align: center;
+}
+
+.review-meta {
+    font-size: var(--text-xs);
+    color: var(--hsk-ink-faint);
+    margin-top: var(--space-2);
+}
+
+/* Complete */
+.review-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+}
+
+.review-complete .complete-emoji {
+    font-size: 3.5rem;
+}
+
+.review-complete .complete-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.review-complete .complete-subtitle {
+    color: var(--hsk-ink-muted);
+}
+
+.review-complete .complete-stats {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.review-complete .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.review-complete .stat-value {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+}
+
+.review-complete .stat-known .stat-value {
+    color: var(--hsk-jade);
+}
+
+.review-complete .stat-learning .stat-value {
+    color: var(--hsk-amber);
+}
+
+.review-complete .stat-label {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+}
+
+.review-complete .complete-xp {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--hsk-gold-dark);
+}

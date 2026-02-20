@@ -1,0 +1,135 @@
+.lesson-list-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    margin-bottom: var(--space-1);
+    letter-spacing: 0.05em;
+}
+
+.lesson-list-subtitle {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    margin-bottom: var(--space-5);
+}
+
+.lesson-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Tang Dynasty lesson card — paper texture, red left accent */
+.lesson-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4) var(--space-3) var(--space-5);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hsk-border);
+    border-left: 4px solid var(--tang-red);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+    transition: transform var(--duration-normal) var(--ease-expressive),
+        box-shadow var(--duration-normal) var(--ease-standard),
+        background-color var(--duration-fast) var(--ease-standard);
+    animation: cardSlideIn var(--duration-slow) var(--ease-expressive-decelerate) backwards;
+}
+
+.lesson-card:nth-child(1) {
+    animation-delay: calc(var(--stagger-delay) * 0);
+}
+
+.lesson-card:nth-child(2) {
+    animation-delay: calc(var(--stagger-delay) * 1);
+}
+
+.lesson-card:nth-child(3) {
+    animation-delay: calc(var(--stagger-delay) * 2);
+}
+
+.lesson-card:nth-child(4) {
+    animation-delay: calc(var(--stagger-delay) * 3);
+}
+
+.lesson-card:nth-child(5) {
+    animation-delay: calc(var(--stagger-delay) * 4);
+}
+
+.lesson-card:nth-child(6) {
+    animation-delay: calc(var(--stagger-delay) * 5);
+}
+
+.lesson-card:nth-child(7) {
+    animation-delay: calc(var(--stagger-delay) * 6);
+}
+
+.lesson-card:nth-child(8) {
+    animation-delay: calc(var(--stagger-delay) * 7);
+}
+
+.lesson-card:nth-child(9) {
+    animation-delay: calc(var(--stagger-delay) * 8);
+}
+
+.lesson-card:nth-child(10) {
+    animation-delay: calc(var(--stagger-delay) * 9);
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.lesson-card:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #F9F7F0;
+    transition-duration: var(--duration-fast);
+}
+
+.lesson-number {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--tang-red-light);
+    color: var(--tang-red);
+    font-size: var(--text-sm);
+    font-weight: var(--font-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.lesson-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-lg);
+    font-weight: 900;
+    color: var(--hsk-ink);
+}
+
+.lesson-title-en {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+}
+
+.lesson-count {
+    font-size: var(--text-xs);
+    color: var(--hsk-ink-faint);
+}

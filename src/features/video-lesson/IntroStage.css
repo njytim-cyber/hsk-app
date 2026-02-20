@@ -1,0 +1,242 @@
+/* ═══════════════════════════════════════════════════════
+   IntroStage — Lesson Introduction (portrait mobile)
+   ═══════════════════════════════════════════════════════ */
+
+.intro-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+/* ── Hero ── */
+.intro-stage__hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: introHeroIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.intro-stage__emoji {
+    font-size: 48px;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06));
+}
+
+.intro-stage__title {
+    font-family: var(--font-chinese);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--hsk-ink);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.intro-stage__title-en {
+    font-size: 14px;
+    color: var(--hsk-ink-muted);
+    margin: 0;
+}
+
+@keyframes introHeroIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ── Sentence Card ── */
+.intro-stage__sentence-card {
+    width: 100%;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    animation: cardSlideUp 0.5s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.intro-stage__sentence {
+    font-family: var(--font-chinese);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--hsk-ink);
+    text-align: center;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.intro-stage__sentence-en {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--hsk-ink-muted);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.intro-stage__listen-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: var(--hsk-ink-muted);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 4px;
+}
+
+.intro-stage__listen-btn:active {
+    transform: scale(0.96);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.intro-stage__listen-btn:disabled {
+    opacity: 0.5;
+}
+
+/* ── Vocab Preview ── */
+.intro-stage__vocab {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: cardSlideUp 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.intro-stage__vocab-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--hsk-ink-faint);
+    font-weight: 600;
+}
+
+.intro-stage__vocab-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.intro-vocab-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 14px 8px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.intro-vocab-chip__hanzi {
+    font-family: var(--font-chinese);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--tang-red);
+}
+
+.intro-vocab-chip__meta {
+    font-size: 10px;
+    color: var(--hsk-ink-faint);
+    white-space: nowrap;
+}
+
+/* ── Video Description ── */
+.intro-stage__video-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    border: 1px dashed rgba(0, 0, 0, 0.08);
+    animation: cardSlideUp 0.5s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.intro-stage__video-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.intro-stage__video-desc {
+    font-size: 12px;
+    color: var(--hsk-ink-muted);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* ── Start Button ── */
+.intro-stage__start-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    background: var(--tang-red);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(169, 50, 38, 0.2);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+    animation: cardSlideUp 0.5s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.intro-stage__start-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 8px rgba(169, 50, 38, 0.15);
+}
+
+.intro-stage__start-arrow {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.intro-stage__start-btn:active .intro-stage__start-arrow {
+    transform: translateX(3px);
+}
+
+@keyframes cardSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

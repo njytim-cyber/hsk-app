@@ -1,0 +1,101 @@
+/* ═══════════════════════════════════════════════════════
+   VoicePicker — Tang Dynasty-styled voice selection
+   ═══════════════════════════════════════════════════════ */
+
+.voice-picker {
+    padding: var(--space-2) 0;
+}
+
+.voice-picker-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-lg);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-1);
+}
+
+.voice-picker-subtitle {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    margin-bottom: var(--space-4);
+}
+
+.voice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+}
+
+.voice-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-3);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--hsk-border);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    transition: all var(--duration-fast) var(--ease-spring);
+    text-align: center;
+    min-height: 44px;
+}
+
+.voice-option:active {
+    transform: scale(0.95);
+    transition-duration: var(--duration-instant);
+}
+
+.voice-option.selected {
+    border-color: var(--tang-red);
+    background: var(--tang-red-light);
+    box-shadow: 0 0 0 1px var(--tang-red), 0 4px 12px rgba(169, 50, 38, 0.1);
+}
+
+.voice-avatar-sprite {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--hsk-gold);
+    box-shadow: 0 2px 6px rgba(180, 83, 9, 0.15);
+    flex-shrink: 0;
+}
+
+.voice-option.selected .voice-avatar-sprite {
+    border-color: var(--tang-red);
+    box-shadow: 0 2px 8px rgba(169, 50, 38, 0.2);
+}
+
+.voice-name {
+    font-family: var(--font-chinese);
+    font-size: var(--text-sm);
+    font-weight: 900;
+    color: var(--hsk-ink);
+}
+
+.voice-desc {
+    font-size: var(--text-xs);
+    color: var(--hsk-ink-muted);
+    line-height: 1.3;
+}
+
+.voice-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+}
+
+.voice-tag {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+    background: rgba(169, 50, 38, 0.08);
+    color: var(--tang-red-dark);
+    font-weight: var(--font-medium);
+}
+
+.voice-option.selected .voice-tag {
+    background: rgba(169, 50, 38, 0.15);
+}

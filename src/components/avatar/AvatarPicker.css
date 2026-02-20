@@ -1,0 +1,83 @@
+.avatar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn var(--duration-fast) var(--ease-standard);
+}
+
+.avatar-modal {
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-tang-lg);
+    animation: scaleIn var(--duration-normal) var(--ease-spring);
+}
+
+.avatar-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.avatar-modal-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    margin: 0;
+}
+
+.avatar-close-btn {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    color: var(--hsk-ink-muted);
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.avatar-close-btn:active {
+    background: var(--tang-red-light);
+    transform: scale(0.9);
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+}
+
+.avatar-option {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-spring);
+    background-color: transparent;
+    padding: 0;
+}
+
+.avatar-option.selected {
+    border-color: var(--tang-red);
+    box-shadow: 0 0 0 2px var(--tang-red-light);
+}
+
+.avatar-option:active {
+    transform: scale(0.9) !important;
+}

@@ -1,0 +1,253 @@
+.flashcard-session {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-4);
+    min-height: 100%;
+    gap: var(--space-5);
+}
+
+/* Header */
+.session-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.session-counter {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+    white-space: nowrap;
+    font-weight: var(--font-semibold);
+    font-family: var(--font-chinese);
+}
+
+/* Flashcard — Tang Dynasty writing card */
+.flashcard {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 3/4;
+    position: relative;
+    cursor: pointer;
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    border-radius: var(--radius-md);
+    backface-visibility: hidden;
+    transition: transform 0.5s var(--ease-spring);
+    padding: var(--space-6);
+}
+
+.flashcard-front {
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border: 1px solid var(--hsk-border);
+    box-shadow: var(--shadow-tang);
+}
+
+.flashcard-back {
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border: 2px solid var(--tang-red);
+    box-shadow: var(--shadow-tang-lg);
+    transform: rotateY(180deg);
+}
+
+.flashcard.flipped .flashcard-front {
+    transform: rotateY(180deg);
+}
+
+.flashcard.flipped .flashcard-back {
+    transform: rotateY(0deg);
+}
+
+.card-hanzi {
+    font-family: var(--font-chinese);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--hsk-ink);
+    line-height: 1.2;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card-pinyin {
+    font-family: var(--font-pinyin);
+    font-size: var(--text-lg);
+    color: var(--tang-red);
+    font-weight: var(--font-medium);
+}
+
+.card-english {
+    font-size: var(--text-base);
+    color: var(--hsk-ink-muted);
+    text-align: center;
+}
+
+.card-hint {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-faint);
+    font-family: var(--font-chinese);
+    animation: pulse 2s var(--ease-standard) infinite;
+}
+
+.card-audio-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tang-red-light);
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.card-audio-btn:active {
+    transform: scale(0.85);
+    background: rgba(169, 50, 38, 0.15);
+}
+
+/* Grade Buttons — Tang Dynasty seal stamps */
+.grade-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2);
+    width: 100%;
+    max-width: 320px;
+}
+
+.grade-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-2);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-chinese);
+    background-color: var(--card-bg);
+    background-image: var(--texture-card);
+    border: 1px solid var(--hsk-border);
+    transition: all var(--duration-fast) var(--ease-spring);
+    min-height: 70px;
+}
+
+.grade-btn:active {
+    transform: scale(0.9);
+    transition-duration: var(--duration-instant);
+}
+
+.grade-emoji {
+    font-size: 1.3rem;
+}
+
+.grade-again {
+    color: #DC2626;
+}
+
+.grade-hard {
+    color: var(--hsk-amber);
+}
+
+.grade-good {
+    color: var(--hsk-jade);
+}
+
+.grade-easy {
+    color: var(--hsk-jade-dark);
+}
+
+.grade-again:active {
+    background: #fef2f2;
+    border-color: #DC2626;
+}
+
+.grade-hard:active {
+    background: #fffbeb;
+    border-color: var(--hsk-amber);
+}
+
+.grade-good:active {
+    background: rgba(6, 95, 70, 0.06);
+    border-color: var(--hsk-jade);
+}
+
+.grade-easy:active {
+    background: rgba(6, 95, 70, 0.08);
+    border-color: var(--hsk-jade-dark);
+}
+
+/* Session complete — Tang Dynasty celebration */
+.session-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+}
+
+.complete-emoji {
+    font-size: 3.5rem;
+}
+
+.complete-title {
+    font-family: var(--font-chinese);
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    letter-spacing: 0.1em;
+}
+
+.complete-subtitle {
+    font-size: var(--text-base);
+    color: var(--hsk-ink-muted);
+}
+
+.complete-stats {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.stat-value {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+}
+
+.stat-known .stat-value {
+    color: var(--hsk-jade);
+}
+
+.stat-learning .stat-value {
+    color: var(--hsk-amber);
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: var(--hsk-ink-muted);
+}
+
+.complete-xp {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--hsk-gold-dark);
+    animation: stamp-in 0.4s var(--ease-spring) both;
+    animation-delay: 0.3s;
+}

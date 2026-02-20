@@ -1,0 +1,314 @@
+/* ═══════════════════════════════════════════════════════
+   CompletionStage — Score Celebration (2026 Premium)
+   ═══════════════════════════════════════════════════════ */
+
+.completion-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 24px 16px 24px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Confetti Particles — delicate ── */
+.completion-stage__particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    top: -12px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    animation: particleDrift 4s var(--delay) infinite;
+    opacity: 0;
+}
+
+.particle:nth-child(5n) {
+    background: var(--hsk-gold);
+    border-radius: 50%;
+}
+
+.particle:nth-child(5n+1) {
+    background: var(--tang-red);
+    border-radius: 50%;
+}
+
+.particle:nth-child(5n+2) {
+    background: var(--hsk-jade);
+    border-radius: 50%;
+}
+
+.particle:nth-child(5n+3) {
+    background: var(--hsk-coral);
+    border-radius: 1px;
+    transform: rotate(45deg);
+}
+
+.particle:nth-child(5n+4) {
+    background: var(--hsk-gold-light);
+    border-radius: 50%;
+}
+
+@keyframes particleDrift {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+    }
+
+    6% {
+        opacity: 0.85;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(70vh) translateX(var(--drift)) rotate(400deg);
+    }
+}
+
+/* ── Hero Grade — big and bold ── */
+.completion-stage__hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 1;
+    padding-top: 8px;
+}
+
+.completion-stage__stars {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.comp-star {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.comp-star--filled {
+    color: var(--hsk-gold);
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+    animation: starPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.comp-star--filled:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.comp-star--filled:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes starPop {
+    from {
+        transform: scale(0) rotate(-30deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.completion-stage__emoji {
+    font-size: 56px;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+    animation: heroFloat 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes heroFloat {
+    from {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.completion-stage__grade {
+    font-family: var(--font-chinese);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--tang-red);
+    letter-spacing: 2px;
+}
+
+.completion-stage__grade-desc {
+    font-size: 14px;
+    color: var(--hsk-ink-muted);
+    font-weight: 400;
+}
+
+/* ── Overall Score Ring ── */
+.completion-stage__overall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+}
+
+.overall-ring {
+    position: relative;
+    width: 108px;
+    height: 108px;
+}
+
+.overall-ring svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.overall-ring__bg {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.05);
+    stroke-width: 4;
+}
+
+.overall-ring__fill {
+    fill: none;
+    stroke: var(--hsk-jade);
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overall-ring__value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--hsk-jade);
+    letter-spacing: -1px;
+}
+
+.overall-xp {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--hsk-gold-dark);
+    background: rgba(255, 215, 0, 0.08);
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+/* ── Score Cards — minimal ── */
+.completion-stage__scores {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    z-index: 1;
+}
+
+.score-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 14px 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    animation: cardSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.score-card__icon {
+    font-size: 20px;
+}
+
+.score-card__value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--hsk-jade);
+    letter-spacing: -0.5px;
+}
+
+.score-card__label {
+    font-size: 10px;
+    color: var(--hsk-ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* ── SRS ── */
+.completion-stage__srs {
+    font-size: 13px;
+    color: var(--hsk-ink-muted);
+    z-index: 1;
+    font-weight: 400;
+}
+
+.completion-stage__srs strong {
+    color: var(--hsk-ink);
+    font-weight: 600;
+}
+
+/* ── Actions ── */
+.completion-stage__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 280px;
+    z-index: 1;
+}
+
+.exit-link {
+    font-size: 13px;
+    color: var(--hsk-ink-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+    font-weight: 400;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.exit-link:active {
+    color: var(--hsk-ink);
+    background: rgba(0, 0, 0, 0.03);
+}

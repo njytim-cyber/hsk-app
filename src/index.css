@@ -1,0 +1,282 @@
+/* ═══════════════════════════════════════════════════════
+   HSK App — Tang Dynasty Design System
+   Inspired by chinese-tingxie Sancai palette
+   ═══════════════════════════════════════════════════════ */
+
+/* --- Color Tokens --- */
+:root {
+  /* 1. The Canvas — Warm Rice Paper */
+  --tang-paper: #F9F7F2;
+  --tang-paper-dark: #E5E0D6;
+  --bg-canvas: var(--tang-paper);
+  --bg-surface: #FFFFFF;
+  --card-bg: #FFFEFA;
+  --card-bg-elevated: #FAFAF6;
+
+  /* 2. The Ink — Traditional Gray-Black */
+  --hsk-ink: #2B2B2B;
+  --hsk-ink-light: #4B5563;
+  --hsk-ink-muted: rgba(43, 43, 43, 0.6);
+  --hsk-ink-faint: #9CA3AF;
+
+  /* 3. The Seal — Cinnabar Red (Primary) */
+  --tang-red: #A93226;
+  --tang-red-dark: #8B2820;
+  --tang-red-light: #FEF2F2;
+  --tang-red-glow: rgba(153, 27, 27, 0.3);
+
+  /* 4. The Jade — Deep Jade Green (Success) */
+  --hsk-jade: #065F46;
+  --hsk-jade-light: #10B981;
+  --hsk-jade-dark: #064E3B;
+  --hsk-jade-10: rgba(6, 95, 70, 0.08);
+  --hsk-jade-20: rgba(6, 95, 70, 0.15);
+
+  /* 5. The Gold — True Gold (Rewards) */
+  --hsk-gold: #FFD700;
+  --hsk-gold-light: #F4D58D;
+  --hsk-gold-dark: #D4A726;
+  --hsk-amber: #F59E0B;
+
+  /* 6. Coral — Celebrations & Streaks */
+  --hsk-coral: #e76f51;
+  --hsk-coral-light: #f4a885;
+
+  /* Borders & Shadows (warm tone) */
+  --hsk-border: #E5E0D8;
+  --hsk-shadow: rgba(43, 43, 43, 0.08);
+
+  /* Semantic */
+  --hsk-success: var(--hsk-jade);
+  --hsk-warning: var(--hsk-amber);
+  --hsk-danger: #DC2626;
+  --hsk-error: var(--hsk-coral);
+  --hsk-info: var(--hsk-ink-light);
+
+  /* HSK Level Colors */
+  --hsk1-color: var(--tang-red);
+  --hsk2-color: #6ab04c;
+  --hsk3-color: var(--hsk-amber);
+  --hsk4-color: var(--hsk-coral);
+
+  /* --- Typography --- */
+  --font-chinese: 'KaiTi', 'STKaiti', '楷体', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-pinyin: 'Ubuntu', sans-serif;
+  --font-display: 'Noto Serif SC', 'Songti SC', serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* --- Spacing --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* --- Radii --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* --- Shadows — Tang paper-lift style --- */
+  --shadow-sm: 0 1px 3px var(--hsk-shadow);
+  --shadow-md: 0 4px 12px var(--hsk-shadow);
+  --shadow-lg: 0 8px 24px var(--hsk-shadow);
+  --shadow-tang: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  --shadow-tang-lg: 0 12px 24px -10px rgba(0, 0, 0, 0.2);
+  --shadow-tang-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 20px var(--hsk-jade-20);
+  --shadow-red-glow: 0 4px 12px rgba(169, 50, 38, 0.2);
+
+  /* --- M3 Expressive Motion System --- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --ease-expressive: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-expressive-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring-bouncy: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+
+  --stagger-delay: 50ms;
+  --stagger-delay-fast: 30ms;
+
+  /* --- Paper Texture --- */
+  --texture-paper: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  --texture-card: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+
+  /* --- Layout --- */
+  --header-height: 56px;
+  --bottom-nav-height: 64px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --content-max-width: 600px;
+}
+
+/* --- Global Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--hsk-ink);
+  background: var(--tang-paper);
+  background-image: var(--texture-paper);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Touch targets — minimum 44px */
+button,
+a,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* --- Common Buttons (Tang Style) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-chinese);
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-md);
+  transition: transform var(--duration-normal) var(--ease-expressive),
+    box-shadow var(--duration-normal) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--tang-red), var(--tang-red-dark));
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  box-shadow: var(--shadow-red-glow);
+  font-size: var(--text-base);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 8px rgba(169, 50, 38, 0.3);
+  transition-duration: var(--duration-fast);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--hsk-ink-muted);
+  border: 1px solid var(--tang-paper-dark);
+  padding: var(--space-3) var(--space-6);
+}
+
+.btn-secondary:active {
+  background: rgba(0, 0, 0, 0.03);
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--hsk-ink-light);
+  padding: var(--space-2) var(--space-4);
+}
+
+.btn-ghost:active {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(0.97);
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+  min-height: 52px;
+}
+
+.btn-sm {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  min-height: 36px;
+}
+
+/* --- Utility Classes --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,177 @@
+import type { HSKWord, HSKLesson } from './types'
+
+/**
+ * HSK 1 Vocabulary — ~150 words organized into 10 lessons
+ * Source: HSK 3.0 Standard (2021)
+ */
+
+const words: HSKWord[] = [
+    // Lesson 1: Greetings & People
+    { hanzi: '你', pinyin: 'nǐ', english: 'you', hskLevel: 1, lessonId: 1 },
+    { hanzi: '好', pinyin: 'hǎo', english: 'good; well', hskLevel: 1, lessonId: 1 },
+    { hanzi: '我', pinyin: 'wǒ', english: 'I; me', hskLevel: 1, lessonId: 1 },
+    { hanzi: '是', pinyin: 'shì', english: 'to be', hskLevel: 1, lessonId: 1 },
+    { hanzi: '他', pinyin: 'tā', english: 'he; him', hskLevel: 1, lessonId: 1 },
+    { hanzi: '她', pinyin: 'tā', english: 'she; her', hskLevel: 1, lessonId: 1 },
+    { hanzi: '们', pinyin: 'men', english: 'plural marker', hskLevel: 1, lessonId: 1 },
+    { hanzi: '人', pinyin: 'rén', english: 'person; people', hskLevel: 1, lessonId: 1 },
+    { hanzi: '谁', pinyin: 'shéi', english: 'who', hskLevel: 1, lessonId: 1 },
+    { hanzi: '什么', pinyin: 'shénme', english: 'what', hskLevel: 1, lessonId: 1 },
+    { hanzi: '朋友', pinyin: 'péngyou', english: 'friend', hskLevel: 1, lessonId: 1 },
+    { hanzi: '同学', pinyin: 'tóngxué', english: 'classmate', hskLevel: 1, lessonId: 1 },
+    { hanzi: '老师', pinyin: 'lǎoshī', english: 'teacher', hskLevel: 1, lessonId: 1 },
+    { hanzi: '学生', pinyin: 'xuésheng', english: 'student', hskLevel: 1, lessonId: 1 },
+    { hanzi: '先生', pinyin: 'xiānsheng', english: 'Mr.; sir', hskLevel: 1, lessonId: 1 },
+
+    // Lesson 2: Numbers & Counting
+    { hanzi: '一', pinyin: 'yī', english: 'one', hskLevel: 1, lessonId: 2 },
+    { hanzi: '二', pinyin: 'èr', english: 'two', hskLevel: 1, lessonId: 2 },
+    { hanzi: '三', pinyin: 'sān', english: 'three', hskLevel: 1, lessonId: 2 },
+    { hanzi: '四', pinyin: 'sì', english: 'four', hskLevel: 1, lessonId: 2 },
+    { hanzi: '五', pinyin: 'wǔ', english: 'five', hskLevel: 1, lessonId: 2 },
+    { hanzi: '六', pinyin: 'liù', english: 'six', hskLevel: 1, lessonId: 2 },
+    { hanzi: '七', pinyin: 'qī', english: 'seven', hskLevel: 1, lessonId: 2 },
+    { hanzi: '八', pinyin: 'bā', english: 'eight', hskLevel: 1, lessonId: 2 },
+    { hanzi: '九', pinyin: 'jiǔ', english: 'nine', hskLevel: 1, lessonId: 2 },
+    { hanzi: '十', pinyin: 'shí', english: 'ten', hskLevel: 1, lessonId: 2 },
+    { hanzi: '百', pinyin: 'bǎi', english: 'hundred', hskLevel: 1, lessonId: 2 },
+    { hanzi: '千', pinyin: 'qiān', english: 'thousand', hskLevel: 1, lessonId: 2 },
+    { hanzi: '个', pinyin: 'gè', english: 'measure word (general)', hskLevel: 1, lessonId: 2 },
+    { hanzi: '几', pinyin: 'jǐ', english: 'how many; a few', hskLevel: 1, lessonId: 2 },
+    { hanzi: '多少', pinyin: 'duōshao', english: 'how much; how many', hskLevel: 1, lessonId: 2 },
+
+    // Lesson 3: Time & Dates
+    { hanzi: '年', pinyin: 'nián', english: 'year', hskLevel: 1, lessonId: 3 },
+    { hanzi: '月', pinyin: 'yuè', english: 'month; moon', hskLevel: 1, lessonId: 3 },
+    { hanzi: '日', pinyin: 'rì', english: 'day; sun', hskLevel: 1, lessonId: 3 },
+    { hanzi: '天', pinyin: 'tiān', english: 'day; sky', hskLevel: 1, lessonId: 3 },
+    { hanzi: '今天', pinyin: 'jīntiān', english: 'today', hskLevel: 1, lessonId: 3 },
+    { hanzi: '明天', pinyin: 'míngtiān', english: 'tomorrow', hskLevel: 1, lessonId: 3 },
+    { hanzi: '昨天', pinyin: 'zuótiān', english: 'yesterday', hskLevel: 1, lessonId: 3 },
+    { hanzi: '现在', pinyin: 'xiànzài', english: 'now', hskLevel: 1, lessonId: 3 },
+    { hanzi: '时候', pinyin: 'shíhou', english: 'time; moment', hskLevel: 1, lessonId: 3 },
+    { hanzi: '点', pinyin: 'diǎn', english: "o'clock", hskLevel: 1, lessonId: 3 },
+    { hanzi: '分', pinyin: 'fēn', english: 'minute', hskLevel: 1, lessonId: 3 },
+    { hanzi: '上午', pinyin: 'shàngwǔ', english: 'morning (before noon)', hskLevel: 1, lessonId: 3 },
+    { hanzi: '下午', pinyin: 'xiàwǔ', english: 'afternoon', hskLevel: 1, lessonId: 3 },
+    { hanzi: '星期', pinyin: 'xīngqī', english: 'week', hskLevel: 1, lessonId: 3 },
+    { hanzi: '岁', pinyin: 'suì', english: 'years old', hskLevel: 1, lessonId: 3 },
+
+    // Lesson 4: Family
+    { hanzi: '家', pinyin: 'jiā', english: 'home; family', hskLevel: 1, lessonId: 4 },
+    { hanzi: '爸爸', pinyin: 'bàba', english: 'father; dad', hskLevel: 1, lessonId: 4 },
+    { hanzi: '妈妈', pinyin: 'māma', english: 'mother; mom', hskLevel: 1, lessonId: 4 },
+    { hanzi: '儿子', pinyin: 'érzi', english: 'son', hskLevel: 1, lessonId: 4 },
+    { hanzi: '女儿', pinyin: 'nǚ\'ér', english: 'daughter', hskLevel: 1, lessonId: 4 },
+    { hanzi: '哥哥', pinyin: 'gēge', english: 'older brother', hskLevel: 1, lessonId: 4 },
+    { hanzi: '姐姐', pinyin: 'jiějie', english: 'older sister', hskLevel: 1, lessonId: 4 },
+    { hanzi: '弟弟', pinyin: 'dìdi', english: 'younger brother', hskLevel: 1, lessonId: 4 },
+    { hanzi: '妹妹', pinyin: 'mèimei', english: 'younger sister', hskLevel: 1, lessonId: 4 },
+    { hanzi: '名字', pinyin: 'míngzi', english: 'name', hskLevel: 1, lessonId: 4 },
+    { hanzi: '叫', pinyin: 'jiào', english: 'to call; to be called', hskLevel: 1, lessonId: 4 },
+    { hanzi: '大', pinyin: 'dà', english: 'big; large', hskLevel: 1, lessonId: 4 },
+    { hanzi: '小', pinyin: 'xiǎo', english: 'small; little', hskLevel: 1, lessonId: 4 },
+
+    // Lesson 5: Food & Drink
+    { hanzi: '吃', pinyin: 'chī', english: 'to eat', hskLevel: 1, lessonId: 5 },
+    { hanzi: '喝', pinyin: 'hē', english: 'to drink', hskLevel: 1, lessonId: 5 },
+    { hanzi: '水', pinyin: 'shuǐ', english: 'water', hskLevel: 1, lessonId: 5 },
+    { hanzi: '茶', pinyin: 'chá', english: 'tea', hskLevel: 1, lessonId: 5 },
+    { hanzi: '米饭', pinyin: 'mǐfàn', english: 'rice (cooked)', hskLevel: 1, lessonId: 5 },
+    { hanzi: '菜', pinyin: 'cài', english: 'dish; vegetable', hskLevel: 1, lessonId: 5 },
+    { hanzi: '水果', pinyin: 'shuǐguǒ', english: 'fruit', hskLevel: 1, lessonId: 5 },
+    { hanzi: '苹果', pinyin: 'píngguǒ', english: 'apple', hskLevel: 1, lessonId: 5 },
+    { hanzi: '杯子', pinyin: 'bēizi', english: 'cup; glass', hskLevel: 1, lessonId: 5 },
+    { hanzi: '钱', pinyin: 'qián', english: 'money', hskLevel: 1, lessonId: 5 },
+    { hanzi: '块', pinyin: 'kuài', english: 'yuan (colloquial)', hskLevel: 1, lessonId: 5 },
+    { hanzi: '买', pinyin: 'mǎi', english: 'to buy', hskLevel: 1, lessonId: 5 },
+    { hanzi: '饭店', pinyin: 'fàndiàn', english: 'restaurant; hotel', hskLevel: 1, lessonId: 5 },
+
+    // Lesson 6: Daily Actions
+    { hanzi: '看', pinyin: 'kàn', english: 'to look; to see; to read', hskLevel: 1, lessonId: 6 },
+    { hanzi: '听', pinyin: 'tīng', english: 'to listen; to hear', hskLevel: 1, lessonId: 6 },
+    { hanzi: '说', pinyin: 'shuō', english: 'to speak; to say', hskLevel: 1, lessonId: 6 },
+    { hanzi: '读', pinyin: 'dú', english: 'to read (aloud)', hskLevel: 1, lessonId: 6 },
+    { hanzi: '写', pinyin: 'xiě', english: 'to write', hskLevel: 1, lessonId: 6 },
+    { hanzi: '学', pinyin: 'xué', english: 'to study; to learn', hskLevel: 1, lessonId: 6 },
+    { hanzi: '做', pinyin: 'zuò', english: 'to do; to make', hskLevel: 1, lessonId: 6 },
+    { hanzi: '去', pinyin: 'qù', english: 'to go', hskLevel: 1, lessonId: 6 },
+    { hanzi: '来', pinyin: 'lái', english: 'to come', hskLevel: 1, lessonId: 6 },
+    { hanzi: '回', pinyin: 'huí', english: 'to return', hskLevel: 1, lessonId: 6 },
+    { hanzi: '住', pinyin: 'zhù', english: 'to live; to stay', hskLevel: 1, lessonId: 6 },
+    { hanzi: '坐', pinyin: 'zuò', english: 'to sit', hskLevel: 1, lessonId: 6 },
+    { hanzi: '打电话', pinyin: 'dǎ diànhuà', english: 'to make a phone call', hskLevel: 1, lessonId: 6 },
+    { hanzi: '睡觉', pinyin: 'shuìjiào', english: 'to sleep', hskLevel: 1, lessonId: 6 },
+
+    // Lesson 7: Places & Transport
+    { hanzi: '中国', pinyin: 'Zhōngguó', english: 'China', hskLevel: 1, lessonId: 7 },
+    { hanzi: '北京', pinyin: 'Běijīng', english: 'Beijing', hskLevel: 1, lessonId: 7 },
+    { hanzi: '学校', pinyin: 'xuéxiào', english: 'school', hskLevel: 1, lessonId: 7 },
+    { hanzi: '医院', pinyin: 'yīyuàn', english: 'hospital', hskLevel: 1, lessonId: 7 },
+    { hanzi: '商店', pinyin: 'shāngdiàn', english: 'store; shop', hskLevel: 1, lessonId: 7 },
+    { hanzi: '前面', pinyin: 'qiánmiàn', english: 'in front; ahead', hskLevel: 1, lessonId: 7 },
+    { hanzi: '后面', pinyin: 'hòumiàn', english: 'behind; back', hskLevel: 1, lessonId: 7 },
+    { hanzi: '里面', pinyin: 'lǐmiàn', english: 'inside', hskLevel: 1, lessonId: 7 },
+    { hanzi: '上', pinyin: 'shàng', english: 'up; above', hskLevel: 1, lessonId: 7 },
+    { hanzi: '下', pinyin: 'xià', english: 'down; below', hskLevel: 1, lessonId: 7 },
+    { hanzi: '车', pinyin: 'chē', english: 'car; vehicle', hskLevel: 1, lessonId: 7 },
+    { hanzi: '出租车', pinyin: 'chūzūchē', english: 'taxi', hskLevel: 1, lessonId: 7 },
+
+    // Lesson 8: Weather & Nature
+    { hanzi: '天气', pinyin: 'tiānqì', english: 'weather', hskLevel: 1, lessonId: 8 },
+    { hanzi: '下雨', pinyin: 'xiàyǔ', english: 'to rain', hskLevel: 1, lessonId: 8 },
+    { hanzi: '热', pinyin: 'rè', english: 'hot', hskLevel: 1, lessonId: 8 },
+    { hanzi: '冷', pinyin: 'lěng', english: 'cold', hskLevel: 1, lessonId: 8 },
+    { hanzi: '多', pinyin: 'duō', english: 'many; much', hskLevel: 1, lessonId: 8 },
+    { hanzi: '少', pinyin: 'shǎo', english: 'few; little', hskLevel: 1, lessonId: 8 },
+    { hanzi: '高兴', pinyin: 'gāoxìng', english: 'happy; glad', hskLevel: 1, lessonId: 8 },
+    { hanzi: '漂亮', pinyin: 'piàoliang', english: 'beautiful; pretty', hskLevel: 1, lessonId: 8 },
+    { hanzi: '高', pinyin: 'gāo', english: 'tall; high', hskLevel: 1, lessonId: 8 },
+    { hanzi: '好吃', pinyin: 'hǎochī', english: 'delicious', hskLevel: 1, lessonId: 8 },
+
+    // Lesson 9: Common Phrases
+    { hanzi: '谢谢', pinyin: 'xièxie', english: 'thank you', hskLevel: 1, lessonId: 9 },
+    { hanzi: '不客气', pinyin: 'bú kèqi', english: "you're welcome", hskLevel: 1, lessonId: 9 },
+    { hanzi: '对不起', pinyin: 'duìbuqǐ', english: 'sorry', hskLevel: 1, lessonId: 9 },
+    { hanzi: '没关系', pinyin: 'méi guānxi', english: "it's okay; never mind", hskLevel: 1, lessonId: 9 },
+    { hanzi: '再见', pinyin: 'zàijiàn', english: 'goodbye', hskLevel: 1, lessonId: 9 },
+    { hanzi: '请', pinyin: 'qǐng', english: 'please', hskLevel: 1, lessonId: 9 },
+    { hanzi: '不', pinyin: 'bù', english: 'not; no', hskLevel: 1, lessonId: 9 },
+    { hanzi: '没有', pinyin: 'méiyǒu', english: "don't have; hasn't", hskLevel: 1, lessonId: 9 },
+    { hanzi: '很', pinyin: 'hěn', english: 'very', hskLevel: 1, lessonId: 9 },
+    { hanzi: '太', pinyin: 'tài', english: 'too; extremely', hskLevel: 1, lessonId: 9 },
+    { hanzi: '了', pinyin: 'le', english: 'completed action marker', hskLevel: 1, lessonId: 9 },
+    { hanzi: '的', pinyin: 'de', english: 'possessive/descriptive particle', hskLevel: 1, lessonId: 9 },
+
+    // Lesson 10: School & Work
+    { hanzi: '书', pinyin: 'shū', english: 'book', hskLevel: 1, lessonId: 10 },
+    { hanzi: '汉语', pinyin: 'Hànyǔ', english: 'Chinese language', hskLevel: 1, lessonId: 10 },
+    { hanzi: '字', pinyin: 'zì', english: 'character; word', hskLevel: 1, lessonId: 10 },
+    { hanzi: '电脑', pinyin: 'diànnǎo', english: 'computer', hskLevel: 1, lessonId: 10 },
+    { hanzi: '电视', pinyin: 'diànshì', english: 'television', hskLevel: 1, lessonId: 10 },
+    { hanzi: '电影', pinyin: 'diànyǐng', english: 'movie', hskLevel: 1, lessonId: 10 },
+    { hanzi: '工作', pinyin: 'gōngzuò', english: 'to work; job', hskLevel: 1, lessonId: 10 },
+    { hanzi: '会', pinyin: 'huì', english: 'can; will; meeting', hskLevel: 1, lessonId: 10 },
+    { hanzi: '能', pinyin: 'néng', english: 'can; be able to', hskLevel: 1, lessonId: 10 },
+    { hanzi: '想', pinyin: 'xiǎng', english: 'to think; to want', hskLevel: 1, lessonId: 10 },
+    { hanzi: '喜欢', pinyin: 'xǐhuan', english: 'to like', hskLevel: 1, lessonId: 10 },
+    { hanzi: '爱', pinyin: 'ài', english: 'to love', hskLevel: 1, lessonId: 10 },
+    { hanzi: '在', pinyin: 'zài', english: 'at; in; on', hskLevel: 1, lessonId: 10 },
+    { hanzi: '有', pinyin: 'yǒu', english: 'to have; there is', hskLevel: 1, lessonId: 10 },
+]
+
+/** HSK 1 organized into lessons */
+export const hsk1Lessons: HSKLesson[] = [
+    { id: 1, title: '你好', titleEn: 'Greetings & People', hskLevel: 1, words: words.filter(w => w.lessonId === 1) },
+    { id: 2, title: '数字', titleEn: 'Numbers & Counting', hskLevel: 1, words: words.filter(w => w.lessonId === 2) },
+    { id: 3, title: '时间', titleEn: 'Time & Dates', hskLevel: 1, words: words.filter(w => w.lessonId === 3) },
+    { id: 4, title: '家庭', titleEn: 'Family', hskLevel: 1, words: words.filter(w => w.lessonId === 4) },
+    { id: 5, title: '吃喝', titleEn: 'Food & Drink', hskLevel: 1, words: words.filter(w => w.lessonId === 5) },
+    { id: 6, title: '动作', titleEn: 'Daily Actions', hskLevel: 1, words: words.filter(w => w.lessonId === 6) },
+    { id: 7, title: '地方', titleEn: 'Places & Transport', hskLevel: 1, words: words.filter(w => w.lessonId === 7) },
+    { id: 8, title: '天气', titleEn: 'Weather & Descriptions', hskLevel: 1, words: words.filter(w => w.lessonId === 8) },
+    { id: 9, title: '常用语', titleEn: 'Common Phrases', hskLevel: 1, words: words.filter(w => w.lessonId === 9) },
+    { id: 10, title: '学习', titleEn: 'School & Work', hskLevel: 1, words: words.filter(w => w.lessonId === 10) },
+]
+
+export const hsk1Words = words

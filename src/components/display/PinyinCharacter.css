@@ -1,0 +1,76 @@
+/* ═══════════════════════════════════════════════════════
+   PinyinCharacter — Pinyin label above character
+   Chinese-tingxie's char-box pattern
+   ═══════════════════════════════════════════════════════ */
+
+.pinyin-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--space-2);
+}
+
+/* Individual char box — pinyin on top, hanzi below */
+.pinyin-char {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    position: relative;
+}
+
+.pinyin-char[role="button"] {
+    cursor: pointer;
+}
+
+.pinyin-char[role="button"]:active {
+    transform: scale(0.95);
+}
+
+/* Pinyin label */
+.pc-pinyin {
+    font-family: var(--font-pinyin);
+    color: var(--tang-red);
+    font-weight: var(--font-medium);
+    text-align: center;
+    min-height: 1.4em;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.pc-pinyin.pc-hidden {
+    opacity: 0;
+}
+
+/* Hanzi character */
+.pc-hanzi {
+    font-family: var(--font-chinese);
+    font-weight: 900;
+    color: var(--hsk-ink);
+    line-height: 1;
+}
+
+/* Size variants */
+.pinyin-char-sm .pc-pinyin {
+    font-size: 0.75rem;
+}
+
+.pinyin-char-sm .pc-hanzi {
+    font-size: 1.5rem;
+}
+
+.pinyin-char-md .pc-pinyin {
+    font-size: 1rem;
+}
+
+.pinyin-char-md .pc-hanzi {
+    font-size: 2.5rem;
+}
+
+.pinyin-char-lg .pc-pinyin {
+    font-size: 1.3rem;
+}
+
+.pinyin-char-lg .pc-hanzi {
+    font-size: 3.5rem;
+}
