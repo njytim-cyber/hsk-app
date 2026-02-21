@@ -190,7 +190,8 @@
 }
 
 .nav-label {
-    font-size: var(--text-xs);
+    font-size: 10px;
+    /* Reduced slightly to fit 5 items comfortably */
     font-weight: var(--font-semibold);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
 }
