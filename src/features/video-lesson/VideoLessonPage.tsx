@@ -177,12 +177,13 @@ export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed
         if (nextIndex < lessonUnits.length) {
             navigate(`/video-lesson/${lessonUnits[nextIndex].id}`)
         } else {
-            navigate('/lessons')
+            if (onExitToFeed) onExitToFeed()
+            else navigate('/')
         }
     }
     const handleExit = () => {
-        if (onExitToFeed) { onExitToFeed(); return }
-        navigate('/lessons')
+        if (onExitToFeed) onExitToFeed()
+        else navigate('/')
     }
 
     const enterClass = slideDir === 'left' ? 'vl-content--enter-left' : 'vl-content--enter-right'

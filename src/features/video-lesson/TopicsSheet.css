@@ -1,32 +1,84 @@
 /* ═══════════════════════════════════════════════════════
-   LessonPicker — Unit selection grid (portrait mobile)
+   TopicsSheet — Frosted Glass Bottom Drawer
    ═══════════════════════════════════════════════════════ */
 
-.lesson-picker {
-    min-height: 100dvh;
-    background: var(--tang-paper);
-    background-image: var(--texture-paper);
-    padding: 24px 16px calc(var(--safe-area-bottom) + var(--bottom-nav-height) + 16px);
+.topics-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: flex-end;
 }
 
-.lesson-picker__header {
+.topics-sheet__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.topics-sheet__drawer {
+    position: relative;
+    background: var(--tang-paper);
+    background-image: var(--texture-paper);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 12px 16px calc(var(--safe-area-bottom) + 32px);
+    max-height: 85dvh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.topics-sheet__handle {
+    width: 40px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 0 auto 8px;
+}
+
+.topics-sheet__header {
     text-align: center;
-    padding: 12px 0 4px;
+    padding: 0 0 8px;
 }
 
-.lesson-picker__title {
-    font-family: var(--font-chinese);
-    font-size: 28px;
+.topics-sheet__title {
+    font-family: var(--font-display);
+    font-size: 22px;
     font-weight: 700;
     color: var(--hsk-ink);
     margin: 0;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
 }
 
-.lesson-picker__subtitle {
+.topics-sheet__subtitle {
     font-size: 13px;
     color: var(--hsk-ink-muted);
     margin: 4px 0 0;
@@ -34,7 +86,7 @@
 }
 
 /* ── 2-column grid ── */
-.lesson-picker__grid {
+.topics-sheet__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;

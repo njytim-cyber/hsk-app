@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { lessonUnits } from './lessonUnits'
 import { VideoLessonPage } from './VideoLessonPage'
+import { TopicsSheet } from './TopicsSheet'
 import './VideoFeed.css'
 
 export function VideoFeed() {
-    const navigate = useNavigate()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [transitioning, setTransitioning] = useState(false)
     const [slideDir, setSlideDir] = useState<'up' | 'down'>('up')
+    const [showTopics, setShowTopics] = useState(false)
 
     const goToLesson = useCallback((index: number, direction: 'up' | 'down') => {
         if (index < 0 || index >= lessonUnits.length || transitioning) return
@@ -29,8 +29,8 @@ export function VideoFeed() {
     }, [currentIndex, goToLesson])
 
     const handleExit = useCallback(() => {
-        navigate('/lessons')
-    }, [navigate])
+        setShowTopics(true)
+    }, [])
 
     const unit = lessonUnits[currentIndex]
 
@@ -82,6 +82,15 @@ export function VideoFeed() {
                     onNextInFeed={handleSwipeUp}
                 />
             </div>
+
+            <TopicsSheet
+                isOpen={showTopics}
+                onClose={() => setShowTopics(false)}
+                onSelect={(index: number) => {
+                    if (index === currentIndex) return
+                    goToLesson(index, index > currentIndex ? 'up' : 'down')
+                }}
+            />
         </div>
     )
 }
