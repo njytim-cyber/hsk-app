@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
 import type { GridStyle } from '../components/writing/CharacterCanvas'
 import { load, save } from '../utils/storage'

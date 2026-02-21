@@ -64,6 +64,10 @@ export function ScrambleStage({ data, onComplete }: ScrambleStageProps) {
 
     return (
         <div className="scramble-stage">
+            <header className="stage-header">
+                <h2 className="stage-title">Sentence Building</h2>
+            </header>
+
             {/* English hint for learners */}
             <p className="scramble-stage__translation">{data.sentenceEn}</p>
 
@@ -118,7 +122,12 @@ export function ScrambleStage({ data, onComplete }: ScrambleStageProps) {
             {/* Completion */}
             {isComplete && (
                 <div className="scramble-stage__complete animate-fade-up">
-                    <div className="scramble-stage__success-burst">🎉</div>
+                    <div className="scramble-stage__success-burst">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                    </div>
                     <button className="continue-btn" onClick={() => onComplete(attempts)}>
                         <span>See Results</span><span className="continue-btn__arrow">→</span>
                     </button>

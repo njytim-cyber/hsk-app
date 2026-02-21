@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { lessonUnits } from './lessonUnits'
 import './LessonPicker.css'
@@ -11,14 +11,13 @@ interface UnitProgress {
 
 export function LessonPicker() {
     const navigate = useNavigate()
-    const [progress, setProgress] = useState<Record<string, UnitProgress>>({})
-
-    useEffect(() => {
+    const [progress] = useState<Record<string, UnitProgress>>(() => {
         try {
-            const stored = JSON.parse(localStorage.getItem('hsk4-progress') || '{}')
-            setProgress(stored)
-        } catch { /* ok */ }
-    }, [])
+            return JSON.parse(localStorage.getItem('hsk4-progress') || '{}')
+        } catch {
+            return {}
+        }
+    })
 
     const completedCount = Object.keys(progress).length
 
@@ -44,19 +43,25 @@ export function LessonPicker() {
                             onClick={() => navigate(`/video-lesson/${unit.id}`)}
                             style={{ animationDelay: `${i * 0.05}s` }}
                         >
+                            {/* Typography Watermark */}
+                            <span className="unit-card__watermark" aria-hidden="true">
+                                {unit.title.charAt(0)}
+                            </span>
+
                             {isDone && (
                                 <div className="unit-card__stars">
                                     {[1, 2, 3].map(s => (
-                                        <span key={s} className={s <= (unitProgress?.stars || 0) ? 'star-filled' : 'star-empty'}>★</span>
+                                        <span key={s} className={s <= (unitProgress?.stars || 0) ? 'star-filled' : 'star-empty'}><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg></span>
                                     ))}
                                 </div>
                             )}
-                            <span className="unit-card__emoji">{unit.emoji}</span>
-                            <span className="unit-card__title">{unit.title}</span>
-                            <span className="unit-card__en">{unit.titleEn}</span>
-                            <span className="unit-card__count">
-                                {unit.lesson.words.filter(w => w.isTarget).length} phrases
-                            </span>
+                            <div className="unit-card__content">
+                                <span className="unit-card__title">{unit.title}</span>
+                                <span className="unit-card__en">{unit.titleEn}</span>
+                                <span className="unit-card__count">
+                                    {unit.lesson.words.filter(w => w.isTarget).length} phrases
+                                </span>
+                            </div>
                         </button>
                     )
                 })}

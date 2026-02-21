@@ -44,18 +44,20 @@
     flex-direction: column;
     gap: 6px;
     z-index: 10;
+    position: relative;
 }
 
 .vl-bottom-bar__close {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--hsk-ink-faint);
+    color: var(--hsk-ink-muted);
     background: transparent;
     border: none;
     cursor: pointer;

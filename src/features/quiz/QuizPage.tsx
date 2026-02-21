@@ -99,7 +99,17 @@ export function QuizPage() {
         return (
             <div className="page-quiz">
                 <div className="quiz-complete animate-stamp-in">
-                    <span className="complete-emoji">{isPerfect ? '🌟' : accuracy >= 80 ? '🌟' : accuracy >= 50 ? '👍' : '💪'}</span>
+                    <span className="complete-emoji">
+                        {isPerfect ? (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-gold)" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
+                        ) : accuracy >= 80 ? (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-jade)" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                        ) : accuracy >= 50 ? (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-ink-light)" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" /></svg>
+                        ) : (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--tang-red)" strokeWidth="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+                        )}
+                    </span>
                     {isPerfect && <div className="success-stamp-overlay">正</div>}
                     <h2 className="complete-title">{isPerfect ? '满分！' : accuracy >= 80 ? '太棒了！' : accuracy >= 50 ? '不错！' : '继续加油！'}</h2>
                     <div className="quiz-accuracy">{accuracy}%</div>
@@ -127,15 +137,18 @@ export function QuizPage() {
 
     return (
         <div className="page-quiz">
+            <header className="stage-header">
+                <h2 className="stage-title">Knowledge Check</h2>
+            </header>
             <div className="quiz-header">
-                <button className="back-btn" onClick={() => setView({ mode: 'select' })}>✕</button>
+                <button className="back-btn" onClick={() => setView({ mode: 'select' })}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 12H5" /><path d="m12 19-7-7 7-7" /></svg></button>
                 <ProgressBar value={progress} color="var(--hsk-jade)" />
                 <span className="session-counter">{view.index + 1}/{view.words.length}</span>
             </div>
 
             <div className="quiz-play-area">
                 <button className="quiz-play-btn" onClick={() => speak(word.hanzi)}>
-                    <span className="play-icon">🔊</span>
+                    <span className="play-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg></span>
                     <span className="play-label">Tap to listen</span>
                 </button>
             </div>
@@ -149,8 +162,8 @@ export function QuizPage() {
                         size="lg"
                     />
                     <span className="answer-english">{word.english}</span>
-                    {feedback === 'correct' && <span className="answer-stamp">✓</span>}
-                    {feedback === 'wrong' && <span className="answer-correction">✗</span>}
+                    {feedback === 'correct' && <span className="answer-stamp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-jade)" strokeWidth="2"><path d="M20 6 9 17l-5-5" /></svg></span>}
+                    {feedback === 'wrong' && <span className="answer-correction"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--tang-red)" strokeWidth="2"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></span>}
                 </div>
             )}
 

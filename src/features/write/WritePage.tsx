@@ -22,14 +22,9 @@ export function WritePage() {
     const [showHint, setShowHint] = useState(false)
     const [showOutline, setShowOutline] = useState(false)
     const quizRef = useRef<{ quiz: (cb?: HanziWriterCallbacks) => void; reveal: () => void } | null>(null)
-    const { grade, addXp, recordPractice, useItem, purchasedItems } = useProgress()
+    const { grade, addXp, recordPractice } = useProgress()
     const { speak } = useAudio()
     const { gridStyle, pinyinMode, showEnglish } = useSettings()
-
-    // Count owned hints
-    const pinyinHints = purchasedItems.filter(id => id === 'hint_pinyin').length
-    const outlineHints = purchasedItems.filter(id => id === 'hint_outline').length
-    const strokeHints = purchasedItems.filter(id => id === 'hint_stroke').length
 
     const startPractice = useCallback((level: 1 | 2 | 3 | 4) => {
         const words = getWordsForLevel(level).slice(0, 10)
@@ -72,18 +67,18 @@ export function WritePage() {
     }, [grade, addXp, recordPractice, mistakes])
 
     const usePinyinHint = useCallback(() => {
-        if (useItem('hint_pinyin')) setShowHint(true)
-    }, [useItem])
+        setShowHint(true)
+    }, [])
 
     const useOutlineHint = useCallback(() => {
-        if (useItem('hint_outline')) setShowOutline(true)
-    }, [useItem])
+        setShowOutline(true)
+    }, [])
 
     const useStrokeHint = useCallback(() => {
-        if (useItem('hint_stroke') && quizRef.current) {
+        if (quizRef.current) {
             quizRef.current.reveal()
         }
-    }, [useItem])
+    }, [])
 
     if (view.mode === 'select') {
         return (
@@ -115,7 +110,7 @@ export function WritePage() {
         return (
             <div className="page-write">
                 <div className="write-complete animate-stamp-in">
-                    <span className="complete-emoji">✍️</span>
+                    <span className="complete-emoji"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m2 12 5 5L22 4" /></svg></span>
                     {mistakes === 0 && <div className="success-stamp-overlay">正</div>}
                     <h2 className="complete-title">练习完成！</h2>
                     <p className="complete-subtitle">Writing practice complete!</p>
@@ -135,7 +130,7 @@ export function WritePage() {
     return (
         <div className="page-write">
             <div className="write-header">
-                <button className="back-btn" onClick={() => setView({ mode: 'select' })}>✕</button>
+                <button className="back-btn" onClick={() => setView({ mode: 'select' })}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 12H5" /><path d="m12 19-7-7 7-7" /></svg></button>
                 <ProgressBar value={progress} color="var(--hsk-jade)" />
                 <span className="session-counter">{view.index + 1}/{view.words.length}</span>
             </div>
@@ -148,7 +143,7 @@ export function WritePage() {
                     size="md"
                 />
                 {showEnglish && <span className="write-english">{word.english}</span>}
-                <button className="write-audio" onClick={() => speak(word.hanzi)}>🔊</button>
+                <button className="write-audio" onClick={() => speak(word.hanzi)}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg></button>
             </div>
 
             <CharacterCanvas
@@ -168,32 +163,26 @@ export function WritePage() {
                     <button
                         className="hint-btn"
                         onClick={usePinyinHint}
-                        disabled={pinyinHints === 0}
                         title="Show pinyin"
                     >
-                        💡 拼音
-                        {pinyinHints > 0 && <span className="hint-badge">{pinyinHints}</span>}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 4, verticalAlign: 'text-bottom' }}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></svg>拼音
                     </button>
                 )}
                 {!showOutline && (
                     <button
                         className="hint-btn"
                         onClick={useOutlineHint}
-                        disabled={outlineHints === 0}
                         title="Show outline"
                     >
                         🔍 轮廓
-                        {outlineHints > 0 && <span className="hint-badge">{outlineHints}</span>}
                     </button>
                 )}
                 <button
                     className="hint-btn"
                     onClick={useStrokeHint}
-                    disabled={strokeHints === 0}
                     title="Reveal character"
                 >
-                    ✏️ 笔画
-                    {strokeHints > 0 && <span className="hint-badge">{strokeHints}</span>}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 4, verticalAlign: 'text-bottom' }}><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg>笔画
                 </button>
             </div>
         </div>

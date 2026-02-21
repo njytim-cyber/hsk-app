@@ -16,67 +16,6 @@
     overflow: hidden;
 }
 
-/* ── Confetti Particles — delicate ── */
-.completion-stage__particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.particle {
-    position: absolute;
-    top: -12px;
-    left: var(--x);
-    width: var(--size);
-    height: var(--size);
-    animation: particleDrift 4s var(--delay) infinite;
-    opacity: 0;
-}
-
-.particle:nth-child(5n) {
-    background: var(--hsk-gold);
-    border-radius: 50%;
-}
-
-.particle:nth-child(5n+1) {
-    background: var(--tang-red);
-    border-radius: 50%;
-}
-
-.particle:nth-child(5n+2) {
-    background: var(--hsk-jade);
-    border-radius: 50%;
-}
-
-.particle:nth-child(5n+3) {
-    background: var(--hsk-coral);
-    border-radius: 1px;
-    transform: rotate(45deg);
-}
-
-.particle:nth-child(5n+4) {
-    background: var(--hsk-gold-light);
-    border-radius: 50%;
-}
-
-@keyframes particleDrift {
-    0% {
-        opacity: 0;
-        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
-    }
-
-    6% {
-        opacity: 0.85;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(70vh) translateX(var(--drift)) rotate(400deg);
-    }
-}
 
 /* ── Hero Grade — big and bold ── */
 .completion-stage__hero {
@@ -126,10 +65,15 @@
     }
 }
 
-.completion-stage__emoji {
-    font-size: 56px;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+.completion-stage__icon {
+    color: var(--tang-red);
+    filter: drop-shadow(0 4px 12px rgba(169, 50, 38, 0.15));
     animation: heroFloat 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.completion-stage__icon svg {
+    width: 56px;
+    height: 56px;
 }
 
 @keyframes heroFloat {
@@ -187,7 +131,7 @@
 
 .overall-ring__fill {
     fill: none;
-    stroke: var(--hsk-jade);
+    stroke: var(--ring-color, var(--hsk-jade));
     stroke-width: 4;
     stroke-linecap: round;
     transition: stroke-dasharray 1.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -202,7 +146,7 @@
     font-family: var(--font-display);
     font-size: 28px;
     font-weight: 700;
-    color: var(--hsk-jade);
+    color: var(--ring-color, var(--hsk-jade));
     letter-spacing: -1px;
 }
 
@@ -211,64 +155,54 @@
     font-size: 14px;
     font-weight: 600;
     color: var(--hsk-gold-dark);
-    background: rgba(255, 215, 0, 0.08);
+    background: rgba(180, 83, 9, 0.08);
+    /* Darker gold map */
     padding: 4px 14px;
     border-radius: 20px;
     letter-spacing: 0.3px;
 }
 
-/* ── Score Cards — minimal ── */
+/* ── Score Breakdown — Minimalist ── */
 .completion-stage__scores {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     width: 100%;
     z-index: 1;
+    margin-top: 8px;
+    margin-bottom: 12px;
 }
 
-.score-card {
-    flex: 1;
+.score-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 16px;
-    padding: 14px 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-    animation: cardSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    gap: 4px;
+    animation: cardSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes cardSlide {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.score-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--hsk-border);
+    animation: cardSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.score-card__icon {
-    font-size: 20px;
+.score-item__label {
+    font-size: 11px;
+    color: var(--hsk-ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
-.score-card__value {
+.score-item__value {
     font-family: var(--font-display);
     font-size: 20px;
     font-weight: 700;
-    color: var(--hsk-jade);
+    color: var(--hsk-ink-light);
     letter-spacing: -0.5px;
-}
-
-.score-card__label {
-    font-size: 10px;
-    color: var(--hsk-ink-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 500;
 }
 
 /* ── SRS ── */

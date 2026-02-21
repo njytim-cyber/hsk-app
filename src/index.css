@@ -53,15 +53,15 @@
   --hsk-error: var(--hsk-coral);
   --hsk-info: var(--hsk-ink-light);
 
-  /* HSK Level Colors */
+  /* HSK Level Colors (Sancai Palette) */
   --hsk1-color: var(--tang-red);
-  --hsk2-color: #6ab04c;
-  --hsk3-color: var(--hsk-amber);
-  --hsk4-color: var(--hsk-coral);
+  --hsk2-color: var(--hsk-jade);
+  --hsk3-color: var(--hsk-gold-dark);
+  --hsk4-color: var(--hsk-ink-light);
 
   /* --- Typography --- */
   --font-chinese: 'KaiTi', 'STKaiti', '楷体', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Optima', 'Avenir Next', 'Avenir', 'Helvetica Neue', sans-serif;
   --font-pinyin: 'Ubuntu', sans-serif;
   --font-display: 'Noto Serif SC', 'Songti SC', serif;
 
@@ -132,7 +132,7 @@
 
   /* --- Layout --- */
   --header-height: 56px;
-  --bottom-nav-height: 64px;
+  --bottom-nav-height: 72px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --content-max-width: 600px;
@@ -182,6 +182,23 @@ a {
 img {
   display: block;
   max-width: 100%;
+}
+
+/* --- Practice Stage Context Titles --- */
+.stage-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.stage-title {
+  font-family: var(--font-chinese);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--hsk-ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* Touch targets — minimum 44px */

@@ -85,6 +85,10 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
 
     return (
         <div className="phonetic-stage">
+            <header className="stage-header">
+                <h2 className="stage-title">Listening & Speaking</h2>
+            </header>
+
             {/* Sentence translation for learners */}
             <p className="phonetic-stage__translation">{data.sentenceEn}</p>
 
@@ -107,9 +111,9 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
                             >
                                 <span className="word-tile__pinyin" style={{ visibility: showPinyin ? 'visible' : 'hidden' }}>{word.pinyin}</span>
                                 <span className="word-tile__hanzi">{word.hanzi}</span>
-                                {isListening && <span className="word-tile__speaker">🔊</span>}
+                                {isListening && <span className="word-tile__speaker"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg></span>}
                                 {recordingState === 'evaluated' && (
-                                    <span className="word-tile__indicator">{result ? '✓' : '✗'}</span>
+                                    <span className="word-tile__indicator">{result ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12" /></svg> : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>}</span>
                                 )}
                             </button>
                         )
@@ -118,19 +122,29 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
             </div>
 
             {/* Controls */}
+            <h3 className="phonetic-stage__instruction">
+                Now it's your turn to speak
+            </h3>
+
             <div className="phonetic-stage__controls">
                 {recordingState === 'idle' && (
                     <>
-                        <button className="listen-sentence-btn" onClick={speakFullSentence} disabled={isSpeaking}>
-                            {isSpeaking ? '🔊 Playing...' : '🔊 Listen'}
-                        </button>
-                        <button className="listen-sentence-btn" onClick={() => setShowPinyin(p => !p)}>
-                            {showPinyin ? '🙈 Hide Pinyin' : '👀 Show Pinyin'}
-                        </button>
-                        <button className="mic-btn mic-btn--start" onClick={startRecording}>
-                            <span className="mic-btn__icon">🎙️</span>
-                        </button>
-                        <span className="phonetic-stage__hint">Tap words to hear, then record yourself</span>
+                        <div className="phonetic-stage__primary-actions">
+                            <button className="action-pill action-pill--primary" onClick={startRecording}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" y1="19" x2="12" y2="22" /></svg>
+                                Tap to Speak
+                            </button>
+                        </div>
+                        <div className="phonetic-stage__secondary-actions">
+                            <button className="action-pill action-pill--ghost" onClick={speakFullSentence} disabled={isSpeaking}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 6 }}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
+                                {isSpeaking ? 'Playing...' : 'Listen to Sentence'}
+                            </button>
+                            <button className="action-pill action-pill--ghost" onClick={() => setShowPinyin(p => !p)}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 6 }}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />{showPinyin ? <line x1="3" y1="3" x2="21" y2="21" /> : null}</svg>
+                                {showPinyin ? 'Hide Pinyin' : 'Show Pinyin'}
+                            </button>
+                        </div>
                     </>
                 )}
 
@@ -141,16 +155,23 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
                                 <span key={i} className="wave-bar" style={{ animationDelay: `${i * 0.1}s` }} />
                             ))}
                         </div>
-                        <button className="mic-btn mic-btn--recording" onClick={stopRecording}>
-                            <span className="mic-btn__icon">⏹️</span>
+                        <button className="action-pill action-pill--danger" onClick={stopRecording}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="6" y="6" width="12" height="12" rx="2" ry="2" /></svg>
+                            Stop Recording
                         </button>
                     </div>
                 )}
 
                 {recordingState === 'recorded' && (
                     <div className="phonetic-stage__actions animate-fade-in">
-                        <button className="action-pill action-pill--secondary" onClick={playback}>▶️ Listen</button>
-                        <button className="action-pill action-pill--primary" onClick={simulateEvaluation}>✨ Check</button>
+                        <button className="action-pill action-pill--secondary" onClick={playback}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                            Listen back
+                        </button>
+                        <button className="action-pill action-pill--primary" onClick={simulateEvaluation}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m2 12 5 5L22 4" /></svg>
+                            Check Accuracy
+                        </button>
                     </div>
                 )}
 

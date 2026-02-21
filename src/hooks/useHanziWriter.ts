@@ -52,6 +52,7 @@ export function useHanziWriter(options: UseHanziWriterOptions): UseHanziWriterRe
 
         // Clean up previous writer
         el.innerHTML = ''
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsLoading(true)
 
         const size = el.clientWidth || 280
@@ -84,8 +85,11 @@ export function useHanziWriter(options: UseHanziWriterOptions): UseHanziWriterRe
     }, [character, showOutline, showCharacter, strokeColor, outlineColor, highlightColor, leniency])
 
     const quiz = useCallback((callbacks?: HanziWriterCallbacks) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         writerRef.current?.quiz({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onMistake: (data) => callbacks?.onMistake?.({ strokeNum: (data as any).strokeNum ?? 0, totalStrokes: (data as any).mistakesOnStroke ?? 0 }),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onCorrectStroke: (data) => callbacks?.onCorrectStroke?.({ strokeNum: (data as any).strokeNum ?? 0, totalStrokes: (data as any).totalMistakes ?? 0 }),
             onComplete: () => callbacks?.onComplete?.(),
         })

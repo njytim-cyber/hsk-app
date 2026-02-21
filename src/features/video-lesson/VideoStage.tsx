@@ -50,7 +50,11 @@ export function VideoStage({ data, onComplete }: VideoStageProps) {
             if (video.paused) video.play()
             return
         }
-        video.paused ? video.play() : video.pause()
+        if (video.paused) {
+            video.play()
+        } else {
+            video.pause()
+        }
     }
 
     // Build the full sentence string from meaningful words
@@ -80,7 +84,7 @@ export function VideoStage({ data, onComplete }: VideoStageProps) {
             {!isPlaying && !hasEnded && (
                 <div className="video-stage__play-overlay">
                     <div className="video-stage__play-ring" />
-                    <div className="video-stage__play-btn">▶</div>
+                    <div className="video-stage__play-btn"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 4 }}><polygon points="5 3 19 12 5 21 5 3" /></svg></div>
                 </div>
             )}
 

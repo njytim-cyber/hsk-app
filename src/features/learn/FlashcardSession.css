@@ -94,9 +94,14 @@
 
 .card-hint {
     font-size: var(--text-sm);
-    color: var(--hsk-ink-faint);
+    color: var(--tang-red);
+    opacity: 0.8;
+    background: rgba(169, 50, 38, 0.08);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-medium);
     font-family: var(--font-chinese);
-    animation: pulse 2s var(--ease-standard) infinite;
+    animation: pulse 2.5s var(--ease-standard) infinite;
 }
 
 .card-audio-btn {

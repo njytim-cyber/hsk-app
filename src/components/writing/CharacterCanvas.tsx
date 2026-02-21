@@ -33,7 +33,10 @@ export function CharacterCanvas({
     })
 
     const onQuizReadyRef = useRef(onQuizReady)
-    onQuizReadyRef.current = onQuizReady
+
+    useEffect(() => {
+        onQuizReadyRef.current = onQuizReady
+    }, [onQuizReady])
 
     useEffect(() => {
         if (!isLoading) {

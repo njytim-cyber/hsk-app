@@ -56,7 +56,13 @@ export function FlashcardSession({ lesson, onExit }: FlashcardSessionProps) {
         return (
             <div className="flashcard-session">
                 <div className="session-complete animate-stamp-in">
-                    <span className="complete-emoji">{allPerfect ? '🌟' : '🎉'}</span>
+                    <span className="complete-emoji">
+                        {allPerfect ? (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-gold)" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
+                        ) : (
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--tang-red)" strokeWidth="2"><path d="m2 12 5 5L22 4" /></svg>
+                        )}
+                    </span>
                     {allPerfect && <div className="success-stamp-overlay">正</div>}
                     <h2 className="complete-title">做得好！</h2>
                     <p className="complete-subtitle">Lesson complete!</p>
@@ -81,8 +87,12 @@ export function FlashcardSession({ lesson, onExit }: FlashcardSessionProps) {
 
     return (
         <div className="flashcard-session">
+            <header className="stage-header">
+                <h2 className="stage-title">Vocabulary Review</h2>
+            </header>
+
             <div className="session-header">
-                <button className="back-btn" onClick={onExit}>✕</button>
+                <button className="back-btn" onClick={onExit}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 12H5" /><path d="m12 19-7-7 7-7" /></svg></button>
                 <ProgressBar value={progress} color="var(--hsk-jade)" />
                 <span className="session-counter">{currentIndex + 1}/{lesson.words.length}</span>
             </div>
@@ -112,7 +122,7 @@ export function FlashcardSession({ lesson, onExit }: FlashcardSessionProps) {
                         className="card-audio-btn"
                         onClick={(e) => { e.stopPropagation(); speak(word.hanzi) }}
                     >
-                        🔊
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
                     </button>
                 </div>
             </div>

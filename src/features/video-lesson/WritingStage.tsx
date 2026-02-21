@@ -43,6 +43,7 @@ export function WritingStage({ data, onComplete }: WritingStageProps) {
     // Reset controls + quiz state when character changes
     useEffect(() => {
         controlsRef.current = null
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setQuizReady(false)
         setQuizStarted(false)
         setStrokeProgress(0)
@@ -113,7 +114,11 @@ export function WritingStage({ data, onComplete }: WritingStageProps) {
         if (!controlsRef.current) return
         controlsRef.current.reveal()
         setQuizStarted(false)
-        setCompletedChars(prev => [...prev, true])
+        setCompletedChars(prev => {
+            const next = [...prev]
+            next[activeCharIndex] = true
+            return next
+        })
         setTimeout(() => {
             if (activeCharIndex < chars.length - 1) setActiveCharIndex(prev => prev + 1)
         }, 600)
@@ -121,6 +126,10 @@ export function WritingStage({ data, onComplete }: WritingStageProps) {
 
     return (
         <div className="writing-stage">
+            <header className="stage-header">
+                <h2 className="stage-title">Character Writing</h2>
+            </header>
+
             {/* Target words with translations */}
             <div className="writing-stage__targets">
                 {targetWords.map((w, i) => (
@@ -143,7 +152,7 @@ export function WritingStage({ data, onComplete }: WritingStageProps) {
                         ].join(' ')}
                     >
                         <span className="char-pill__char">{char}</span>
-                        {completedChars[i] && <span className="char-pill__check">✓</span>}
+                        {completedChars[i] && <span className="char-pill__check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--hsk-jade)" strokeWidth="3"><path d="M20 6 9 17l-5-5" /></svg></span>}
                     </div>
                 ))}
             </div>
@@ -167,9 +176,15 @@ export function WritingStage({ data, onComplete }: WritingStageProps) {
 
                     {/* Hint / Reveal */}
                     <div className="writing-stage__toolbar">
-                        <button className="writing-tool-btn" onClick={handleHint} disabled={!quizStarted}>💡 Hint</button>
+                        <button className="writing-tool-btn" onClick={handleHint} disabled={!quizStarted}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 4, verticalAlign: 'text-bottom' }}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></svg>
+                            Hint
+                        </button>
                         {mistakes > 0 && <span className="writing-stage__mistake-count">{mistakes} mistake{mistakes !== 1 ? 's' : ''}</span>}
-                        <button className="writing-tool-btn" onClick={handleReveal} disabled={!quizStarted}>👁️ Show</button>
+                        <button className="writing-tool-btn" onClick={handleReveal} disabled={!quizStarted}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 4 }}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                            Show
+                        </button>
                     </div>
                 </div>
             )}

@@ -5,9 +5,7 @@ import { useAvatar } from '../../hooks/useAvatar'
 import { hskLevels } from '../../data'
 import { ProgressBar } from '../../components/common/ProgressBar'
 import AvatarPicker from '../../components/avatar/AvatarPicker'
-import ShopModal from '../../components/shop/ShopModal'
 import type { GridStyle } from '../../components/writing/CharacterCanvas'
-import type { ShopItem } from '../../data/types'
 import './ProfilePage.css'
 
 const GRID_OPTIONS: { value: GridStyle; label: string; icon: string }[] = [
@@ -17,47 +15,42 @@ const GRID_OPTIONS: { value: GridStyle; label: string; icon: string }[] = [
 ]
 
 export function ProfilePage() {
-    const { xp, coins, streak, wordProgress, purchasedItems, getMastery, purchase } = useProgress()
+    const { xp, streak, wordProgress, getMastery } = useProgress()
     const { gridStyle, pinyinMode, showEnglish, update } = useSettings()
     const { avatar, setAvatar, avatarStyle } = useAvatar()
 
     const [showAvatarPicker, setShowAvatarPicker] = useState(false)
-    const [showShop, setShowShop] = useState(false)
 
     const totalWords = Object.keys(wordProgress).length
     const masteredWords = Object.values(wordProgress).filter(p => p.score >= 4).length
 
-    const handlePurchase = (item: ShopItem) => {
-        purchase(item.id, item.price)
-    }
-
     return (
         <div className="page-profile animate-fade-up">
-            {/* Avatar + Name */}
+            {/* Avatar + Quote */}
             <div className="profile-hero">
                 <button
                     className="profile-avatar"
                     style={avatarStyle}
                     onClick={() => setShowAvatarPicker(true)}
                     aria-label="Change avatar"
-                />
+                >
+                    {(!avatarStyle || !avatarStyle.backgroundImage) && <span className="avatar-placeholder">学</span>}
+                </button>
                 <div className="profile-hero-info">
-                    <span className="profile-hero-coins">🪙 {coins}</span>
-                    <button className="shop-open-btn" onClick={() => setShowShop(true)}>
-                        🏪 商店
-                    </button>
+                    <span className="profile-hero-name">学海无涯</span>
+                    <span className="profile-quote">"Learning is a boundless sea."</span>
                 </div>
             </div>
 
             {/* Stats Overview */}
             <div className="profile-stats-grid">
                 <div className="stat-card">
-                    <span className="stat-icon">⭐</span>
+                    <span className="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg></span>
                     <span className="stat-value">{xp}</span>
                     <span className="stat-label">XP</span>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">🔥</span>
+                    <span className="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg></span>
                     <span className="stat-value">{streak}</span>
                     <span className="stat-label">Day Streak</span>
                 </div>
@@ -145,15 +138,6 @@ export function ProfilePage() {
                     current={avatar}
                     onSelect={setAvatar}
                     onClose={() => setShowAvatarPicker(false)}
-                />
-            )}
-
-            {showShop && (
-                <ShopModal
-                    coins={coins}
-                    purchasedItems={purchasedItems}
-                    onPurchase={handlePurchase}
-                    onClose={() => setShowShop(false)}
                 />
             )}
         </div>

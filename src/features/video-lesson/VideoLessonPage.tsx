@@ -178,7 +178,7 @@ export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed
                 ref={contentRef}
                 className={`vl-content ${transitioning ? exitClass : enterClass}`}
             >
-                {stage === 'intro' && <IntroStage data={data} unitEmoji={unit.emoji} onStart={handleIntroStart} />}
+                {stage === 'intro' && <IntroStage data={data} onStart={handleIntroStart} />}
                 {stage === 'video' && <VideoStage data={data} onComplete={handleVideoComplete} />}
                 {stage === 'phonetic' && <PhoneticStage data={data} onComplete={handlePhoneticComplete} />}
                 {stage === 'writing' && <WritingStage data={data} onComplete={handleWritingComplete} />}

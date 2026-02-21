@@ -50,17 +50,17 @@
 }
 
 .review-card-front {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg-elevated);
     background-image: var(--texture-card);
     border: 1px solid var(--hsk-border);
     box-shadow: var(--shadow-tang);
 }
 
 .review-card-back {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg-elevated);
     background-image: var(--texture-card);
-    border: 2px solid var(--tang-red);
-    box-shadow: var(--shadow-tang-lg);
+    border: 1px solid var(--tang-red);
+    box-shadow: var(--shadow-red-glow);
     transform: rotateY(180deg);
 }
 

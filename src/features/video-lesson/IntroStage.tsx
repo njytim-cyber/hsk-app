@@ -5,11 +5,10 @@ import './IntroStage.css'
 
 interface IntroStageProps {
     data: VideoLessonConfig
-    unitEmoji: string
     onStart: () => void
 }
 
-export function IntroStage({ data, unitEmoji, onStart }: IntroStageProps) {
+export function IntroStage({ data, onStart }: IntroStageProps) {
     const { speak, isSpeaking } = useAudio()
     const [hasPlayed, setHasPlayed] = useState(false)
 
@@ -33,7 +32,9 @@ export function IntroStage({ data, unitEmoji, onStart }: IntroStageProps) {
     return (
         <div className="intro-stage">
             <div className="intro-stage__hero">
-                <span className="intro-stage__emoji">{unitEmoji}</span>
+                <div className="intro-stage__badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" /></svg>
+                </div>
                 <h2 className="intro-stage__title">{data.title}</h2>
                 <p className="intro-stage__title-en">{data.titleEn}</p>
             </div>
@@ -47,7 +48,8 @@ export function IntroStage({ data, unitEmoji, onStart }: IntroStageProps) {
                     onClick={handleListen}
                     disabled={isSpeaking}
                 >
-                    {isSpeaking ? '🔊 Playing…' : '🔊 Listen again'}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 6 }}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
+                    {isSpeaking ? 'Playing…' : 'Listen again'}
                 </button>
             </div>
 
@@ -67,7 +69,7 @@ export function IntroStage({ data, unitEmoji, onStart }: IntroStageProps) {
             {/* Video description placeholder */}
             {data.videoDescription && (
                 <div className="intro-stage__video-note">
-                    <span className="intro-stage__video-icon">🎬</span>
+                    <span className="intro-stage__video-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg></span>
                     <span className="intro-stage__video-desc">{data.videoDescription}</span>
                 </div>
             )}

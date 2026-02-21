@@ -28,6 +28,16 @@
     cursor: pointer;
     transition: all var(--duration-fast) var(--ease-spring);
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-placeholder {
+    font-family: var(--font-chinese);
+    font-size: 32px;
+    color: var(--tang-red);
+    opacity: 0.8;
 }
 
 .profile-avatar:active {
@@ -37,35 +47,24 @@
 
 .profile-hero-info {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
     flex: 1;
 }
 
-.profile-hero-coins {
+.profile-hero-name {
     font-family: var(--font-chinese);
     font-weight: 900;
-    font-size: var(--text-lg);
-    color: var(--hsk-gold-dark);
+    font-size: var(--text-xl);
+    color: var(--hsk-ink);
 }
 
-.shop-open-btn {
-    margin-left: auto;
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-md);
+.profile-quote {
     font-family: var(--font-chinese);
-    font-weight: 900;
     font-size: var(--text-sm);
-    background: var(--tang-red-light);
-    color: var(--tang-red-dark);
-    border: 1px solid var(--tang-red);
-    min-height: 40px;
-    transition: all var(--duration-fast) var(--ease-spring);
-}
-
-.shop-open-btn:active {
-    transform: scale(0.95);
-    background: rgba(169, 50, 38, 0.15);
+    color: var(--hsk-ink-muted);
+    opacity: 0.8;
 }
 
 /* Stats grid — Tang Dynasty calligraphy pillbox */
@@ -79,13 +78,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: var(--space-1);
-    padding: var(--space-4) var(--space-3);
-    background-color: var(--card-bg);
+    padding: var(--space-4) var(--space-2);
+    background-color: var(--card-bg-elevated);
     background-image: var(--texture-card);
     border-radius: var(--radius-md);
     border: 1px solid var(--hsk-border);
-    box-shadow: 0 4px 6px rgba(169, 50, 38, 0.05);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.stat-card:active {
+    transform: scale(0.97);
 }
 
 .stat-icon {
