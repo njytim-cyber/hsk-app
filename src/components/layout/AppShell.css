@@ -96,6 +96,12 @@
     padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + var(--space-4));
 }
 
+.app-shell--immersive .app-content {
+    padding: 0;
+    overflow: hidden;
+    /* Video feed manages its own scroll */
+}
+
 /* Bottom Navigation — Tang Dynasty footer */
 .bottom-nav {
     position: fixed;
@@ -116,6 +122,23 @@
     border-top: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.04);
     z-index: 100;
+}
+
+.app-shell--immersive .bottom-nav {
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-shell--immersive .nav-item {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.app-shell--immersive .nav-item.active {
+    color: var(--tang-red);
+}
+
+.app-shell--immersive .nav-item.active::before {
+    background: linear-gradient(90deg, transparent, var(--tang-red), transparent);
 }
 
 .nav-item {

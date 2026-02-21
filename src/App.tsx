@@ -10,26 +10,22 @@ import { VideoFeed } from './features/video-lesson/VideoFeed'
 
 export default function App() {
   return (
-    <Routes>
-      {/* Landing: TikTok-style video feed */}
-      <Route path="/" element={<VideoFeed />} />
+    <AppShell>
+      <Routes>
+        {/* Landing: TikTok-style video feed */}
+        <Route path="/" element={<VideoFeed />} />
 
-      {/* Direct lesson access */}
-      <Route path="/video-lesson/:unitId" element={<VideoLessonPage />} />
+        {/* Direct lesson access */}
+        <Route path="/video-lesson/:unitId" element={<VideoLessonPage />} />
 
-      {/* Standard app routes */}
-      <Route path="*" element={
-        <AppShell>
-          <Routes>
-            <Route path="/learn" element={<LearnPage />} />
-            <Route path="/write" element={<WritePage />} />
-            <Route path="/quiz" element={<QuizPage />} />
-            <Route path="/review" element={<ReviewPage />} />
-            <Route path="/me" element={<ProfilePage />} />
-          </Routes>
-        </AppShell>
-      } />
-    </Routes>
+        {/* Standard app routes */}
+        <Route path="/learn" element={<LearnPage />} />
+        <Route path="/write" element={<WritePage />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/me" element={<ProfilePage />} />
+      </Routes>
+    </AppShell>
   )
 }
 
