@@ -42,10 +42,11 @@ Contextual vocabulary — words aren't flashcards, they're moments in a story
 Progressive density — each video sentence packs 3–4 HSK target phrases
 What We Already Have (Our Moat)
 ✅ Video lesson pipeline with full 6-stage flow (Intro → Video → Phonetic → Writing → Scramble → Complete)
+✅ Explicit stage context headers driving clear "Next Action" framing
 ✅ HanziWriter integration with stroke-order animation preview
 ✅ Speech recognition for phonetic practice
 ✅ Sentence reconstruction (scramble) stage
-✅ Tang Dynasty design system with rich animations
+✅ Premium Tang Dynasty design system (Sancai palette, frosted glass navigation, calligraphy empty states, and custom animated SVG feedback)
 ✅ 10 HSK 4 units with 37 target phrases
 ✅ 1 proof-of-concept video (坚持与成功)
 What We Need Next (Roadmap Priorities)

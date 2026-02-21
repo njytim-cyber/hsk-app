@@ -6,10 +6,10 @@ import { VideoStage } from './VideoStage'
 import { PhoneticStage } from './PhoneticStage'
 import { WritingStage } from './WritingStage'
 import { ScrambleStage } from './ScrambleStage'
-import { CompletionStage } from './CompletionStage'
+import { useProgress } from '../../contexts/ProgressContext'
 import './VideoLessonPage.css'
 
-type Stage = 'intro' | 'video' | 'phonetic' | 'writing' | 'scramble' | 'complete'
+type Stage = 'intro' | 'video' | 'phonetic' | 'writing' | 'scramble'
 
 /* ── Clean SVG icons for each stage ── */
 const StageIcon = ({ stage, active }: { stage: Stage; active: boolean }) => {
@@ -27,8 +27,6 @@ const StageIcon = ({ stage, active }: { stage: Stage; active: boolean }) => {
             return <svg {...props}><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
         case 'scramble':
             return <svg {...props}><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>
-        case 'complete':
-            return <svg {...props}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
     }
 }
 
@@ -49,6 +47,7 @@ interface VideoLessonPageProps {
 export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed, onNextInFeed }: VideoLessonPageProps = {}) {
     const navigate = useNavigate()
     const { unitId } = useParams<{ unitId: string }>()
+    const { addXp } = useProgress()
 
     const unit = useMemo(
         () => feedUnit || lessonUnits.find(u => u.id === unitId),
@@ -65,8 +64,8 @@ export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed
     const hasVideo = Boolean(unit?.lesson.videoSrc)
     const STAGES: Stage[] = useMemo(
         () => hasVideo
-            ? ['intro', 'video', 'phonetic', 'writing', 'scramble', 'complete']
-            : ['intro', 'phonetic', 'writing', 'scramble', 'complete'],
+            ? ['intro', 'video', 'phonetic', 'writing', 'scramble']
+            : ['intro', 'phonetic', 'writing', 'scramble'],
         [hasVideo]
     )
 
@@ -141,15 +140,39 @@ export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed
         goToStage('scramble', 'left')
     }
     const handleScrambleComplete = (attempts: number) => {
-        setScores(prev => ({ ...prev, scrambleAttempts: attempts }))
-        goToStage('complete', 'left')
-    }
-    const handleRestart = () => {
+        // Calculate final score
+        const scrambleBlocks = data.scrambleAnswer.filter(b => !/^[，。！？、；：]$/.test(b)).length
+        const scrambleEfficiency = Math.round(
+            (scrambleBlocks / Math.max(attempts, scrambleBlocks)) * 100
+        )
+        const overallScore = Math.round(
+            (scores.pronunciation + scores.writing + scrambleEfficiency) / 3
+        )
+        const xpEarned = Math.round(overallScore * 1.5)
+        const stars = overallScore >= 90 ? 3 : overallScore >= 60 ? 2 : 1
+
+        // Save progress to local storage (HSK4 map)
+        try {
+            const key = 'hsk4-progress'
+            const existing = JSON.parse(localStorage.getItem(key) || '{}')
+            existing[data.id] = { score: overallScore, stars, completedAt: Date.now() }
+            localStorage.setItem(key, JSON.stringify(existing))
+        } catch { /* ok */ }
+
+        // Add to global XP state
+        addXp(xpEarned)
+
+        // Haptic burst for completing the loop seamlessly
+        if (navigator.vibrate) navigator.vibrate([30, 50, 30])
+
+        // Setup scores for next round
         setScores({ pronunciation: 0, writing: 0, scrambleAttempts: 0 })
-        goToStage('intro', 'right')
-    }
-    const handleNextUnit = () => {
-        if (onNextInFeed) { onNextInFeed(); return }
+
+        // Auto-advance
+        if (onNextInFeed) {
+            onNextInFeed()
+            return
+        }
         const nextIndex = unitIndex + 1
         if (nextIndex < lessonUnits.length) {
             navigate(`/video-lesson/${lessonUnits[nextIndex].id}`)
@@ -183,16 +206,6 @@ export function VideoLessonPage({ feedUnit, onSwipeUp, onSwipeDown, onExitToFeed
                 {stage === 'phonetic' && <PhoneticStage data={data} onComplete={handlePhoneticComplete} />}
                 {stage === 'writing' && <WritingStage data={data} onComplete={handleWritingComplete} />}
                 {stage === 'scramble' && <ScrambleStage data={data} onComplete={handleScrambleComplete} />}
-                {stage === 'complete' && (
-                    <CompletionStage
-                        data={data}
-                        scores={scores}
-                        onRestart={handleRestart}
-                        onExit={handleExit}
-                        onNextUnit={handleNextUnit}
-                        hasNextUnit={unitIndex < lessonUnits.length - 1}
-                    />
-                )}
             </div>
 
             {showBottomBar && (

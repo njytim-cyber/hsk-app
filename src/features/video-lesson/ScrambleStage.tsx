@@ -129,7 +129,7 @@ export function ScrambleStage({ data, onComplete }: ScrambleStageProps) {
                         </svg>
                     </div>
                     <button className="continue-btn" onClick={() => onComplete(attempts)}>
-                        <span>See Results</span><span className="continue-btn__arrow">→</span>
+                        <span>Continue to Next Lesson</span><span className="continue-btn__arrow">→</span>
                     </button>
                 </div>
             )}
