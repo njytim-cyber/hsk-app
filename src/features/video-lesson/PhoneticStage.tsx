@@ -82,6 +82,16 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
     const total = meaningfulWords.length
     const pct = total > 0 ? Math.round((score / total) * 100) : 0
 
+    // Auto-advance
+    useEffect(() => {
+        if (recordingState === 'evaluated') {
+            const timer = setTimeout(() => {
+                onComplete(pct)
+            }, 1200)
+            return () => clearTimeout(timer)
+        }
+    }, [recordingState, pct, onComplete])
+
     return (
         <div className="phonetic-stage">
             <header className="stage-header">
@@ -180,9 +190,6 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
                             </svg>
                             <span className="score-ring__value">{pct}%</span>
                         </div>
-                        <button className="continue-btn" onClick={() => onComplete(pct)}>
-                            <span>Continue</span><span className="continue-btn__arrow">→</span>
-                        </button>
                     </div>
                 )}
             </div>

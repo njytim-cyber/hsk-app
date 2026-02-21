@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { getScrambleBlocks, shuffleArray } from './videoLessonData'
 import type { VideoLessonConfig } from './videoLessonData'
 import './ScrambleStage.css'
@@ -26,6 +26,16 @@ export function ScrambleStage({ data, onComplete }: ScrambleStageProps) {
     const [lastCorrectIndex, setLastCorrectIndex] = useState<number | null>(null)
     const [attempts, setAttempts] = useState(0)
     const [isComplete, setIsComplete] = useState(false)
+
+    // Auto-advance
+    useEffect(() => {
+        if (isComplete) {
+            const timer = setTimeout(() => {
+                onComplete(attempts)
+            }, 1200)
+            return () => clearTimeout(timer)
+        }
+    }, [isComplete, attempts, onComplete])
 
     const nextCorrectWord = correctOrder[placed.length]
 
@@ -128,9 +138,6 @@ export function ScrambleStage({ data, onComplete }: ScrambleStageProps) {
                             <path d="m9 12 2 2 4-4" />
                         </svg>
                     </div>
-                    <button className="continue-btn" onClick={() => onComplete(attempts)}>
-                        <span>Continue to Next Lesson</span><span className="continue-btn__arrow">→</span>
-                    </button>
                 </div>
             )}
         </div>
