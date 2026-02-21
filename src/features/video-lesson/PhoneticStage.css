@@ -228,11 +228,8 @@
 
 /* Instruction */
 .phonetic-stage__instruction {
-    font-family: var(--font-chinese);
-    font-size: var(--text-base);
-    color: var(--hsk-ink);
-    font-weight: 900;
-    margin-bottom: 8px;
+    display: none;
+    /* Removed visually */
 }
 
 
@@ -293,13 +290,63 @@
 }
 
 /* Action pills */
-.phonetic-stage__primary-actions {
+.phonetic-stage__simplified-actions {
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 24px;
     width: 100%;
 }
 
-.phonetic-stage__secondary-actions {
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.icon-button:active {
+    transform: scale(0.92);
+}
+
+.icon-button--listen {
+    width: 52px;
+    height: 52px;
+    background: transparent;
+    color: var(--hsk-ink-muted);
+    border: 2px solid var(--hsk-border);
+}
+
+.icon-button--speaking {
+    color: var(--tang-red);
+    border-color: var(--tang-red);
+    background: rgba(220, 38, 38, 0.05);
+    animation: speakerPulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.icon-button--mic {
+    width: 72px;
+    height: 72px;
+    background: var(--tang-red);
+    color: white;
+    box-shadow: 0 6px 16px rgba(169, 50, 38, 0.25);
+}
+
+.icon-button--mic:hover {
+    box-shadow: 0 8px 20px rgba(169, 50, 38, 0.35);
+    transform: translateY(-2px);
+}
+
+.icon-button--mic:active {
+    transform: translateY(1px) scale(0.95);
+    box-shadow: 0 2px 8px rgba(169, 50, 38, 0.2);
+}
+
+.phonetic-stage__primary-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;

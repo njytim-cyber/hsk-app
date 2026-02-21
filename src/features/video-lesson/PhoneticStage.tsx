@@ -18,7 +18,6 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
     const [activeWord, setActiveWord] = useState<number | null>(null)
     const mediaRecorderRef = useRef<MediaRecorder | null>(null)
     const chunksRef = useRef<Blob[]>([])
-    const [showPinyin, setShowPinyin] = useState(true)
     const hasAutoPlayed = useRef(false)
 
     const meaningfulWords = data.words.filter(
@@ -109,7 +108,7 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
                                 disabled={isSpeaking && activeWord !== i}
                                 style={{ animationDelay: `${i * 0.04}s` }}
                             >
-                                <span className="word-tile__pinyin" style={{ visibility: showPinyin ? 'visible' : 'hidden' }}>{word.pinyin}</span>
+                                <span className="word-tile__pinyin">{word.pinyin}</span>
                                 <span className="word-tile__hanzi">{word.hanzi}</span>
                                 {isListening && <span className="word-tile__speaker"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg></span>}
                                 {recordingState === 'evaluated' && (
@@ -121,31 +120,28 @@ export function PhoneticStage({ data, onComplete }: PhoneticStageProps) {
                 </div>
             </div>
 
-            {/* Controls */}
-            <h3 className="phonetic-stage__instruction">
-                Now it's your turn to speak
-            </h3>
-
-            <div className="phonetic-stage__controls">
+            <div className="phonetic-stage__controls phonetic-stage__controls--minimal">
                 {recordingState === 'idle' && (
-                    <>
-                        <div className="phonetic-stage__primary-actions">
-                            <button className="action-pill action-pill--primary" onClick={startRecording}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" y1="19" x2="12" y2="22" /></svg>
-                                Tap to Speak
-                            </button>
-                        </div>
-                        <div className="phonetic-stage__secondary-actions">
-                            <button className="action-pill action-pill--ghost" onClick={speakFullSentence} disabled={isSpeaking}>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 6 }}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
-                                {isSpeaking ? 'Playing...' : 'Listen to Sentence'}
-                            </button>
-                            <button className="action-pill action-pill--ghost" onClick={() => setShowPinyin(p => !p)}>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: 6 }}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />{showPinyin ? <line x1="3" y1="3" x2="21" y2="21" /> : null}</svg>
-                                {showPinyin ? 'Hide Pinyin' : 'Show Pinyin'}
-                            </button>
-                        </div>
-                    </>
+                    <div className="phonetic-stage__simplified-actions">
+                        {/* Listen Button (Speaker) */}
+                        <button
+                            className={`icon-button icon-button--listen ${isSpeaking ? 'icon-button--speaking' : ''}`}
+                            onClick={speakFullSentence}
+                            disabled={isSpeaking}
+                            aria-label="Listen to Sentence"
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /></svg>
+                        </button>
+
+                        {/* Speak Button (Mic) */}
+                        <button
+                            className="icon-button icon-button--mic"
+                            onClick={startRecording}
+                            aria-label="Tap to Speak"
+                        >
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" y1="19" x2="12" y2="22" /></svg>
+                        </button>
+                    </div>
                 )}
 
                 {recordingState === 'recording' && (
