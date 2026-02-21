@@ -15,9 +15,16 @@ const AudioCtx = createContext<AudioContextValue | null>(null)
 export function AudioProvider({ children }: { children: ReactNode }) {
     const { voiceId } = useSettings()
 
-    // Azure key can come from env or settings
-    const subscriptionKey = import.meta.env.VITE_AZURE_SPEECH_KEY as string | undefined
-    const region = (import.meta.env.VITE_AZURE_SPEECH_REGION as string) || 'southeastasia'
+    // Speech config: prefer runtime injection over build-time env vars.
+    // In production, inject via a server endpoint or window.__SPEECH_CONFIG__.
+    // The VITE_ env var is kept ONLY as a local dev convenience.
+    const speechConfig = (window as unknown as Record<string, unknown>).__SPEECH_CONFIG__ as
+        { key?: string; region?: string } | undefined
+
+    const subscriptionKey = speechConfig?.key
+        ?? (import.meta.env.VITE_AZURE_SPEECH_KEY as string | undefined)
+    const region = speechConfig?.region
+        ?? ((import.meta.env.VITE_AZURE_SPEECH_REGION as string) || 'southeastasia')
 
     const { speak, stop, isSpeaking, isAvailable } = useAzureTTS({
         subscriptionKey,
