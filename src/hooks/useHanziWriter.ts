@@ -85,7 +85,6 @@ export function useHanziWriter(options: UseHanziWriterOptions): UseHanziWriterRe
     }, [character, showOutline, showCharacter, strokeColor, outlineColor, highlightColor, leniency])
 
     const quiz = useCallback((callbacks?: HanziWriterCallbacks) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         writerRef.current?.quiz({
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onMistake: (data) => callbacks?.onMistake?.({ strokeNum: (data as any).strokeNum ?? 0, totalStrokes: (data as any).mistakesOnStroke ?? 0 }),
